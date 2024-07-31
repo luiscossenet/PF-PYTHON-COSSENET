@@ -96,37 +96,40 @@ def CrearTipoDocumento(request):
         idEstado = request.POST['id_estado']
         usuarioAlta = request.POST['usuario_alta']
         fechaAlta = request.POST['fecha_alta']
-        estado = Estado(codigo_documento=codigoDocumento, nombre=nombreEstado, id_estado=idEstado,usuario_alta=usuarioAlta, fecha_alta=fechaAlta)
+        # Supongamos que tienes una instancia de Estado existente
+        #cuando se tiene una llave foranea se debe hacer una consulta para obtener el objeto
+        estado_instance = Estado.objects.get(id_estado=idEstado)  # Cambia el valor según corresponda
+        estado = Tipo_Documento(codigo_documento=codigoDocumento, nombre=nombreEstado, id_estado=estado_instance,usuario_alta=usuarioAlta, fecha_alta=fechaAlta)
         try:
             estado.save()
-            mensaje = f"Estado: {nombreEstado} con codigo: {codigoDocumento} y fecha de registro: {fechaAlta}"
+            mensaje = f"Estado Grabado: {nombreEstado} con codigo: {codigoDocumento} y fecha de registro: {fechaAlta}"
             statuscode = 200
-            print("Estado grabado")
+            #print("Estado grabado")
         except:
             mensaje = "El registro ya existe"
             statuscode = 200
-            print("El registro ya existe")
-        print( {'mensaje': mensaje, 'status_code': statuscode})
+            #print("El registro ya existe")
+            #print( {'mensaje': mensaje, 'status_code': statuscode})
             #mensaje = "Estado grabado exitosamente"
         return render(request, 'pages/addTipoDocumento.html', {'mensaje': mensaje})
     
     
-    return render(request, 'pages/addEstados.html')
+    return render(request, 'pages/addTipoDocumento.html')
 
 # CRUD operations for each model
 def SelectTipoDocumento(request):
     if request.method == 'POST':
         valorConsultado = request.POST['valorConsulta']
-        resultadoConsulta = Estado.objects.filter(nombre__icontains=valorConsultado)
+        resultadoConsulta = Tipo_Documento.objects.filter(nombre__icontains=valorConsultado)
         context = {
         'mensaje': resultadoConsulta,
         'statuscode':200,
         'respuesta': 'Estado consultado'
         }
-        return render(request, 'pages/selEstados.html', context)
+        return render(request, 'pages/selTipoDocumento.html', context)
     
     
-    return render(request, 'pages/selEstados.html')
+    return render(request, 'pages/selTipoDocumento.html')
 
 ############CrearCargos
 

@@ -19,7 +19,7 @@ class Estado(models.Model):
 
 class Tipo_Documento(models.Model):
     id = models.AutoField(primary_key=True)
-    codigo_documento = models.CharField(max_length=255)
+    codigo_documento = models.CharField(max_length=255,unique=True,null=True)
     nombre = models.CharField(max_length=255)
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     usuario_alta = models.CharField(max_length=255)
@@ -31,7 +31,7 @@ class Tipo_Documento(models.Model):
 class Empresa(models.Model):
     id = models.AutoField(primary_key=True)
     codigo_documento = models.ForeignKey(Tipo_Documento, on_delete=models.CASCADE, null=True)
-    numero_documento = models.CharField(max_length=255, null=True)
+    numero_documento = models.CharField(max_length=255, unique=True,null=True)
     nombre = models.CharField(max_length=255)
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     usuario_alta = models.CharField(max_length=255)

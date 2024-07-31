@@ -2,7 +2,7 @@
 {% load static %}
 
 
-{% block title %}Mágico Aprendizaje - Consulta Estados{% endblock %}
+{% block title %}Mágico Aprendizaje - Consulta Tipos de Documentos{% endblock %}
 
 {% block content %}
     <!-- main static-->
@@ -18,8 +18,8 @@
             </ul>
         </div>
         {% endif %}
-            <h2>Consultar Estados</h2>
-            <form action="/pages/selEstados/" method="post">
+            <h2>Consultar Tipo de Documentos</h2>
+            <form action="/pages/selTipoDocumento/" method="post">
                 {% csrf_token %}
             <div class="align-right">
                 <p> Valor a Consultar: <input type = "text" name="valorConsulta">
