@@ -11,25 +11,9 @@ urlpatterns = [
     path('pages/clubtareasdirigidas/', ClubTareasDirigidas,name='ClubTareasDirigidas'),
     path('pages/contactenos/', Contactenos,name='Contactenos'), 
     path('pages/addEstados/', CrearEstado,name='CrearEstado'),  
-    path('pages/selEstados/', SelectEstado,name='SelEstado'),  
-    #----------------------------------------------------------# 
-    path('pages-cursos/', cursos,name='cursos'),
-    path('pages-estudiantes/', estudiantes),
-    path('pages-profesores/', profesores),
-    path('pages-entregables/', entregables),
-    path('libros/', libros),
-    path('cargadores/', probando_cargadores),
-    #-------------#
-    path('curso/', curso),
-    path('crearcurso/', crear_curso),
-    path('mostrarinformacion/', mostrar_informacion, name='mostrarCursos'),
-    
+    path('pages/selEstados/', SelectEstado,name='SelEstado'),
+    path('pages/addTipoDocumento/', CrearTipoDocumento,name='CrearTipoDocumento'),  
+    path('pages/selTipoDocumento/', SelectTipoDocumento,name='SelTipoDocumento'),      
+    path('pages/addCargos/', CrearCargos,name='CrearCargos'),  
+    path('pages/selCargos/', SelectCargos,name='SelCargos'),       
 ]
-
-clase_21 = [
-    #ruta de la clase 21
-    path('clase21/', curso_formulario),
-    
-]
-
-urlpatterns = urlpatterns + clase_21

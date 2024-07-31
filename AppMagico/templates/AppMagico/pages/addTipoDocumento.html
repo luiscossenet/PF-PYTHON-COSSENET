@@ -1,0 +1,28 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Crear Tipos de Documentos{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+        {% if mensaje %}
+        <h2>{{mensaje}}</h2>
+        {% endif %}
+            <h2>Crear Tipo Documentos</h2>
+            <form action="/pages/addTipoDocumento/" method="post">
+                {% csrf_token %}
+            <div class="align-right">
+                <p> Codigo Documento: <input type="text" name="codigo_documento" maxlength="2"></p>
+                <p> Nombre: <input type = "text" name="nombre"></p>
+                <p> Estado: <input type = "text" name="id_estado"></p>
+                <p> Usuario Alta: <input type = "date" name="usuario_alta"></p>
+                <p> Fecha Alta: <input type = "date" name="fecha_alta"></p>
+                <div>     
+                <input type = "submit" value="Enviar">
+                <div>
+            </div>
+            </form>      
+    </main>
+{% endblock %}

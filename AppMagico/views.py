@@ -86,3 +86,85 @@ def SelectEstado(request):
     
     return render(request, 'pages/selEstados.html')
 
+
+#####################TipoDocumento
+# CRUD operations for each model
+def CrearTipoDocumento(request):
+    if request.method == 'POST':
+        codigoDocumento = request.POST['codigo_documento']
+        nombreEstado = request.POST['nombre']
+        idEstado = request.POST['id_estado']
+        usuarioAlta = request.POST['usuario_alta']
+        fechaAlta = request.POST['fecha_alta']
+        estado = Estado(codigo_documento=codigoDocumento, nombre=nombreEstado, id_estado=idEstado,usuario_alta=usuarioAlta, fecha_alta=fechaAlta)
+        try:
+            estado.save()
+            mensaje = f"Estado: {nombreEstado} con codigo: {codigoDocumento} y fecha de registro: {fechaAlta}"
+            statuscode = 200
+            print("Estado grabado")
+        except:
+            mensaje = "El registro ya existe"
+            statuscode = 200
+            print("El registro ya existe")
+        print( {'mensaje': mensaje, 'status_code': statuscode})
+            #mensaje = "Estado grabado exitosamente"
+        return render(request, 'pages/addTipoDocumento.html', {'mensaje': mensaje})
+    
+    
+    return render(request, 'pages/addEstados.html')
+
+# CRUD operations for each model
+def SelectTipoDocumento(request):
+    if request.method == 'POST':
+        valorConsultado = request.POST['valorConsulta']
+        resultadoConsulta = Estado.objects.filter(nombre__icontains=valorConsultado)
+        context = {
+        'mensaje': resultadoConsulta,
+        'statuscode':200,
+        'respuesta': 'Estado consultado'
+        }
+        return render(request, 'pages/selEstados.html', context)
+    
+    
+    return render(request, 'pages/selEstados.html')
+
+############CrearCargos
+
+# CRUD operations for each model
+def CrearCargos(request):
+    if request.method == 'POST':
+        idEstado = request.POST['codigoEstado']
+        nombreEstado = request.POST['nombreEstado']
+        fechaAlta = request.POST['fechaRegistro']
+        estado = Estado(id_estado=idEstado, nombre=nombreEstado, fecha_alta=fechaAlta)
+        try:
+            estado.save()
+            mensaje = f"Estado: {nombreEstado} con codigo: {idEstado} y fecha de registro: {fechaAlta}"
+            statuscode = 200
+            print("Estado grabado")
+        except:
+            mensaje = "El registro ya existe"
+            statuscode = 200
+            print("El registro ya existe")
+        print( {'mensaje': mensaje, 'status_code': statuscode})
+            #mensaje = "Estado grabado exitosamente"
+        return render(request, 'pages/addEstados.html', {'mensaje': mensaje})
+    
+    
+    return render(request, 'pages/addEstados.html')
+
+# CRUD operations for each model
+def SelectCargos(request):
+    if request.method == 'POST':
+        valorConsultado = request.POST['valorConsulta']
+        resultadoConsulta = Estado.objects.filter(nombre__icontains=valorConsultado)
+        context = {
+        'mensaje': resultadoConsulta,
+        'statuscode':200,
+        'respuesta': 'Estado consultado'
+        }
+        return render(request, 'pages/selEstados.html', context)
+    
+    
+    return render(request, 'pages/selEstados.html')
+
