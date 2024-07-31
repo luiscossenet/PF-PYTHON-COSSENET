@@ -1,0 +1,22 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Club de Tareas Dirigidas{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+            <h2>Club de Tareas Dirigidas</h2>
+                <div class="image-container">
+                    <img class="img-fluid div-polaroid img-p" src="{% static 'AppMagico/img/clubtareasdirigidas.jpg' %}"
+                        alt="Club de Tareas Dirigidas, Niños estudiando con la Profesora.">
+                </div>
+                <article>
+                    <p> Brindamos acompañamiento en la realizacion de compromisos academicos, utilizando estrategias que
+                        los motiven a alcanzar sus objetivos durante el proceso de aprendizaje.
+                    </p>
+                </article>
+            </section>
+        </main>
+{% endblock %}

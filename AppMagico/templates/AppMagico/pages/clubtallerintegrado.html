@@ -1,0 +1,22 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Club Taller Integrado{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+        <h2>Club Taller Integrado</h2>
+            <div class="image-container">
+                <img class="responsive-image div-polaroid" src="{% static 'AppMagico/img/clubtallerintegrado.jpg' %}" alt="Club de Taller Integrado, Niña Jugando con Plastilina.">
+            </div>
+            <article>
+                <p> Ofrecemos una variedad de actividades ludicas donde los niños y niñas se divertiran y
+                    aprenderan a traves de nuevas experiencias para que desarrollen sus habilidades cognitivas,
+                    motrices y artisticas.
+                </p>
+            </article>
+        </section>
+    </main>
+{% endblock %}

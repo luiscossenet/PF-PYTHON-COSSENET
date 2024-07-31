@@ -1,0 +1,12 @@
+//////////////////////////////////////////
+/// Bootstrap 5
+//////////////////////////////////////////
+/// 1. Modificando Variables de Bootstrap
+/// //////////////////////////////////////
+@import "./variables.scss";
+////##Importando Estilos
+@import "./styles.scss";
+@import "./widgets.scss";
+//////////////////////////////////////////
+/// #Importando Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap.scss";

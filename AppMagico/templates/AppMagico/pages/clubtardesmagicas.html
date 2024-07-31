@@ -1,0 +1,21 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Club de Tardes Magicas{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+        <h2>Club Tardes Magicas</h2>
+                <div class="image-container">
+                    <img class="responsive-image  div-polaroid" src="{% static 'AppMagico/img/clubtardesmagicas.jpg' %}" alt="Club de Tardes Magicas, Niños reunidos riendose.">
+                </div>
+                <article>
+                    <p> Ofrecemos diferentes actividades pedagogicas, artisticas y de estimulacion integral,
+                        que permiten a los niños y niñas tener tardes llenas de alegria y conocimiento.
+                    </p>
+                </article>
+            </section>
+        </main>    
+{% endblock %}

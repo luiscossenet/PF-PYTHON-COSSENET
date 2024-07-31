@@ -1,0 +1,23 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Club de Lectura{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+            <h2>Club de lectura</h2>
+            <div class="image-container">
+                <img class="responsive-image div-polaroid" src="{% static 'AppMagico/img/clubdelectura.jpg' %}" alt="Imagen de Club de Lectura, Ninos leyendo.">
+            </div>
+            <article>
+                <p> Este servico esta orientado a fomentar habitos de lectura en los niños y niñas, con el proposito de
+                    desarrollar
+                    su pensamiento critico, el analisis y comprension lectora, a traves de actividades divertidas que
+                    desarrollaran su imaginacion
+                    y creatividad.</p>
+            </article>
+        </section>
+    </main>
+{% endblock %}

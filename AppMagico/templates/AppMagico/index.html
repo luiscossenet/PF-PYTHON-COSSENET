@@ -1,0 +1,33 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Educación y Apoyo Escolar{% endblock %}
+
+{% block content %}
+            <img class="img-fluid div-polaroid img-p" src="{% static 'AppMagico/img/imgmagicobq.jpeg' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            <h2>Bienvenidos</h2>
+            <article>
+                <p> Somos un centro educativo, bienvenido a nuestros servicios. </p>
+            </article>
+        </section>
+        <section id="widgetContador" class="text-center container">
+            <div class="stat div-polaroid" id="fondo_color_servicios">
+                <span class="stat-count" id="numero_servicios">0</span>
+                <p class="stat-detail">Servicios</p>
+            </div>
+            <div class="stat div-polaroid" id="fondo_color_estudiantes">
+                <span class="stat-count" id="numero_estudiantes">+0</span>
+                <p class="stat-detail">Estudiantes</p>
+            </div>
+            <div class="stat div-polaroid" id="fondo_color_years">
+                <span class="stat-count" id="numero_years">0</span>
+                <p class="stat-detail">Años</p>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'AppMagico/js/contador.js' %}"></script>
+{% endblock %}

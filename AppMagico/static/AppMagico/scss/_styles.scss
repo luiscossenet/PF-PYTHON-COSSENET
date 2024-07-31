@@ -1,0 +1,349 @@
+h1 {
+    font-family: $font-family;
+    font-size: 50px;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+
+h2 {
+    font-family: $font-family;
+    font-size: 30px;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+article {
+    justify-content: center;
+    width: 100%;
+    color: $principal;
+    padding: 1rem;
+    font-family: $font-family;
+    text-align: center;
+    /* Centra horizontalmente */
+    height: auto;
+    /* Altura del contenedor igual a la altura de la ventana */
+    display: flex;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    font-size: 20px;
+}
+
+footer {
+    background: url('../img/footer3A.jpg') no-repeat center center;
+    background-size: cover;
+    height: 30%;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    flex-direction: column;
+
+}
+/////////////////////
+/// Menus
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    /*Todo se pone en horizontal*/
+    /*los elementos flex- funcionan, si el display es flex*/
+    flex-direction: row;
+    /* Cambiar el orden de las cosas*/
+    flex-wrap: nowrap;
+    justify-content: center;
+    /*Como se alinea co su padre :space-between;*/
+    align-items: start;
+    gap: 2rem;
+    /* Espacio entre elementos*/
+    border-style: none;
+}
+
+.menu-item {
+    background-color: white;
+    color: black;
+    font-family:  $font-family;
+    padding: 1rem;
+}
+
+
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+//////////////////
+/// Links
+/// 
+.a_web {
+    /* Remueve Link*/
+    text-decoration: none;
+    font-family: $font-family;
+    /*color: black;*/
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+}
+
+.aicom_web {
+    /* Remueve Link*/
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    font-family: $font-family;
+}
+
+.whatsapp-link:hover {
+    background-color: #1DA851;
+}
+
+.facebook-link:hover {
+    background-color: #2d4373;
+}
+
+.instagram-link:hover {
+    background-color: #bc2a8d;
+}
+
+.mail-link:hover {
+    background-color: rgba(0, 0, 0, .15);
+}
+
+.web-link:hover {
+    background-color: rgba(0, 0, 0, .15);
+}
+
+
+
+//////////////////
+/// Imagenes
+img {
+    max-width: 80%;
+    /*filter: grayscale(100%);*/
+}
+
+img:hover {
+    -webkit-transform: scale(1.3);
+    transform: scale(0.9);
+}
+//////////////////
+/// Estilo imagenes
+.div-polaroid {
+    width: 80%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
+}
+
+.div-polaroid-container {
+    text-align: center;
+    padding: 10px 20px;
+}
+
+///////////////////
+//Barra de progreso
+.container-bar {
+    background: $background__bar;
+    width: 100%;
+    height: 6px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.bar {
+    width: 0;
+    height: 100%;
+    box-shadow: $background__bar__shadow;
+    background: $background__bar__color;
+
+    animation: resize auto linear forwards;
+    animation-timeline: scroll(root block);
+}
+////////////////////////////////////////////////////////////
+/// Contacto
+/* Estilo formulario de contacto */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 5px;
+    background: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+    margin-top: 1rem;
+    display: block;
+}
+
+
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form input[type="submit"],
+.contact-form input[type="reset"],
+.contact-form input[type="button"] {
+    width: auto;
+    padding: 0.5rem 2rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.contact-form input[type="submit"]:hover,
+.contact-form input[type="reset"]:hover,
+.contact-form input[type="button"]:hover {
+    background: #0056b3;
+}
+
+.spacer {
+    height: 20px;
+}
+
+.line {
+    display: flex;
+    font-family: "Noto Sans", sans-serif;
+    justify-content: center;
+    align-items: center;
+}
+
+.line img,
+.line i {
+    margin: 0 10px;
+}
+
+
+
+////////////////////////////////////////////////////////////
+/// /// Estilos de la barra de progreso
+@keyframes resize {
+    from {
+        width: 0%
+    }
+
+    /* Se puede omitir */
+    to {
+        width: 100%
+    }
+}
+
+@keyframes resize {
+    from {
+        width: 0%
+    }
+
+    /* Se puede omitir */
+    to {
+        width: 100%
+    }
+}
+
+/**/
+
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 1rem;
+    }
+}
+
+/* Fin Estilo formulario de contacto */
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    footer {
+        background-size: cover;
+        /* Asegura que la imagen cubra el área del footer */
+        height: auto;
+        /* Ajusta la altura automáticamente según el contenido */
+    }
+
+    .line img {
+        width: 20px;
+        /* Ajusta el tamaño de los iconos para móviles */
+        height: 20px;
+    }
+
+    .line span {
+        font-size: 0.9em;
+        /* Ajusta el tamaño del texto para móviles */
+    }
+}
+
+@media (min-width: 768px) {
+    .image-container {
+        height: 500px;
+        /* Ajusta la altura según sea necesario para pantallas grandes */
+    }
+
+    .responsive-image {
+        height: 100%;
+        width: auto;
+        /* Mantiene la proporción de la imagen */
+    }
+}
