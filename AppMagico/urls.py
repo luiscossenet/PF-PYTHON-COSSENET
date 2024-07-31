@@ -9,7 +9,10 @@ urlpatterns = [
     path('pages/clubtallerintegrado/', ClubTallerIntegrado,name='ClubTallerIntegrado'),
     path('pages/clubtardesmagicas/', ClubTardesMagicas,name='ClubTardesMagicas'),
     path('pages/clubtareasdirigidas/', ClubTareasDirigidas,name='ClubTareasDirigidas'),
-    path('pages/contactenos/', Contactenos,name='Contactenos'),    
+    path('pages/contactenos/', Contactenos,name='Contactenos'), 
+    path('pages/addEstados/', CrearEstado,name='CrearEstado'),  
+    path('pages/selEstados/', SelectEstado,name='SelEstado'),  
+    #----------------------------------------------------------# 
     path('pages-cursos/', cursos,name='cursos'),
     path('pages-estudiantes/', estudiantes),
     path('pages-profesores/', profesores),

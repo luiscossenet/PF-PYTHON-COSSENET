@@ -1,0 +1,32 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Crear Estados{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+        {% if mensaje %}
+        <div class="alert alert-success" role="alert">
+            <p>Resultado</p>
+            <p>{{ respuesta }}</p>
+            <ul>
+                {% for estado in mensaje %}
+                    <li>{{ estado.id }}-{{ estado.nombre }}-{{ estado.id_estado}}-{{ estado.fecha_alta}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+            <h2>Consultar Estados</h2>
+            <form action="/pages/selEstados/" method="post">
+                {% csrf_token %}
+            <div class="align-right">
+                <p> Valor a Consultar: <input type = "text" name="valorConsulta">
+                <div>     
+                    <input type = "submit" value="Enviar">
+                <div>
+            </div>
+            </form>      
+    </main>
+{% endblock %}
