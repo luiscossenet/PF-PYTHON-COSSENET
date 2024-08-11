@@ -1,0 +1,22 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - TEST{% endblock %}
+
+{% block content %}
+            <img class="img-fluid div-polaroid img-p" src="{% static 'AppMagico/img/imgmagicobq.jpeg' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            <h2>Bienvenidos</h2>
+            <article>
+                <p> TEST. </p>
+            </article>
+        </section>
+        <form action="/pages/cursoFormul/" method="post">
+            {% csrf_token %}
+            <p> Curso: <input type = "text" name="curso">
+            <p> Camada: <input type = "text" name="camada">
+            <input type = "submit" value="Enviar">
+        </form>
+    </main>
+{% endblock %}
+

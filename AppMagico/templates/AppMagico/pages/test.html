@@ -1,0 +1,36 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - TEST{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+            <img class="img-fluid div-polaroid img-p" src="{% static 'AppMagico/img/imgmagicobq.jpeg' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            <h2>Bienvenidos</h2>
+            <article>
+                {% if pFormEstado.errors %}
+                <p style="color: red;">Por favor corrija los errores debajo.</p>
+            {% endif %}
+            <!--/pages/test/ -->
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                    {{ pFormEstado.as_table }}
+                </table>
+                <input type="submit" value="Enviar">
+            </form>
+            </article>
+            {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+                <p>Resultado</p>
+                <p>{{mensaje }}</p>
+            </div>
+            {% endif %}
+        </section>
+
+            
+
+    </main>
+{% endblock %}
+
