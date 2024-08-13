@@ -1,34 +1,30 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
 
-{% block title %}Mágico Aprendizaje - Crear Estados{% endblock %}
+{% block title %}Mágico Aprendizaje - Actualizar Estados{% endblock %}
 
 {% block content %}
     <!-- main static-->
         <!-- h1 -->    
-            <h2>Crear Estados de Registros</h2>
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Actualizar Estados de Registros C</h2>
             <article>
                 {% if pFormEstado.errors %}
                 <p style="color: red;">Por favor corrija los errores debajo.</p>
             {% endif %}
             <!--/pages/test/ -->
-            <form action="" method="POST">{% csrf_token %}
+            <form action="{% url 'vEstadoUpdateRowCommitForm' %}" method="POST">{% csrf_token %}
                 <table>
                     {{ pFormEstado.as_table }}
                 </table>
                 <input type="submit" value="Enviar">
             </form>
             </article>
-            {% if mensaje %}
-            <div class="alert alert-success" role="alert">
-                <p>Resultado</p>
-                <p>{{mensaje }}</p>
-            </div>
-            {% endif %}
-        </section>
-
             
-
+            
+        </section>
     </main>
 {% endblock %}
 

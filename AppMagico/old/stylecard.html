@@ -1,0 +1,20 @@
+{% if mensaje %}
+<div class="container text-center alert alert-success" role="alert">
+    <p>Resultado</p>
+    <p>{{ respuesta }}</p>
+    <div class="row">
+        {% for estado in mensaje %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p><strong>ID:</strong> {{ estado.id }}</p>
+                    <p><strong>Nombre:</strong> {{ estado.nombre }}</p>
+                    <p><strong>ID Estado:</strong> {{ estado.id_estado }}</p>
+                    <p><strong>Fecha de Alta:</strong> {{ estado.fecha_alta }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

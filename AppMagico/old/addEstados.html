@@ -1,0 +1,29 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+
+{% block title %}Mágico Aprendizaje - Crear Estados{% endblock %}
+
+{% block content %}
+<!-- main static-->
+<!-- h1 -->
+<!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->
+{% if mensaje %}
+<h2>{{mensaje}}</h2>
+{% endif %}
+<h2>Crear Estados</h2>
+<form action="/pages/addEstados/" method="post">
+    {% csrf_token %}
+    <div class="align-right">
+        <p> Id: <input type="text" name="codigoEstado" maxlength="1"></p>
+        <p> Nombre: <input type="text" name="nombreEstado"></p>
+        <p> Fecha Alta: <input type="date" name="fechaRegistro"></p>
+        <div>
+            <input type="submit" value="Enviar">
+            <div>
+            </div>
+</form>
+</main>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
 
-{% block title %}Mágico Aprendizaje - Consulta Estados{% endblock %}
+{% block title %}Mágico Aprendizaje - Actualizar Estados{% endblock %}
 
 {% block content %}
     <!-- main static-->
@@ -9,7 +9,7 @@
            <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
                 alt="Imagen Principal Magico Aprendizaje">
             -->    
-            <h2>Consultar Estados de Registros</h2>
+            <h2>Actualizar Estados de Registros</h2>
             <article>
                 {% if pFormEstado.errors %}
                 <p style="color: red;">Por favor corrija los errores debajo.</p>
@@ -33,17 +33,39 @@
                             <th>Nombre</th>
                             <th>ID Estado</th>
                             <th>Fecha de Alta</th>
+                            <th>Actualizar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for estado in mensaje %}
-                        <tr>
-                            <td>{{ estado.id }}</td>
-                            <td>{{ estado.nombre }}</td>
-                            <td>{{ estado.id_estado }}</td>
-                            <td>{{ estado.fecha_alta }}</td>
-                        </tr>
-                        {% endfor %}
+						{% for estado in mensaje %}
+						<tr>
+						  <td>{{ estado.id }}</td>
+						  <td>{{ estado.nombre }}</td>
+						  <td>{{ estado.id_estado }}</td>
+						  <td>{{ estado.fecha_alta }}</td>
+						  <td>
+							<form
+							  action="{% url 'vEstadoUpdateRowForm' estado.id %}"
+							  method="POST"
+							  style="display: inline"
+							>
+							  {% csrf_token %}
+							  <button type="submit" class="btn btn-primary">Actualizar</button>
+							</form>
+						  </td>
+						  <td>
+							<form
+							  action="{% url 'vEstadoDeleteRowForm' estado.id %}"
+							  method="POST"
+							  style="display: inline"
+							>
+							  {% csrf_token %}
+							  <button type="submit" class="btn btn-danger">Eliminar</button>
+							</form>
+						  </td>
+						</tr>
+						{% endfor %}
                     </tbody>
                 </table>
             </div>
