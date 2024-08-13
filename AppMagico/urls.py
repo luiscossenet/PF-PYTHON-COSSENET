@@ -1,5 +1,6 @@
 from django.urls import path
 from AppMagico.views import *
+from AppMagico import views
 
 urlpatterns = [
     # ruta de la pagina de inicio , funcion de la vista, nombre del objeto.
@@ -35,6 +36,10 @@ urlpatterns = [
         estadosViewDeleteRowCommit,
         name="vEstadosDeleteRowCommit",
     ),
+    # rutas de clases basadas en vistas
+    path("pages/cargosSelect/", views.CargosListView.as_view(), name="vCargosSelect"),
+    path("pages/cargosAdd/", views.CargosCreateView.as_view(), name="vCargosAdd"),
+    # FIN rutas de clases basadas en vistas
     path("pages/addTipoDocumento/", CrearTipoDocumento, name="CrearTipoDocumento"),
     path("pages/selTipoDocumento/", SelectTipoDocumento, name="SelTipoDocumento"),
     path("pages/addCargos/", CrearCargos, name="CrearCargos"),

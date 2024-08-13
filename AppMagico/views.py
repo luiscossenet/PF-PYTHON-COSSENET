@@ -5,6 +5,13 @@ from django.template import Template, Context, loader
 from AppMagico.forms import *
 from django.shortcuts import get_object_or_404
 import requests
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+
 
 # Create your views here.
 
@@ -394,6 +401,46 @@ def estadosViewDeleteRowCommit(request):
         else:
             myFormEstado = EstadoSelectAllForm()
     return redirect("vEstadosDelete")
+
+
+#######CLASES BASADAS EN VISTAS ############################
+
+
+class CargosListView(ListView):
+    model = Cargos
+    context_object_name = "cargos"
+    ordering = ["nombre"]
+    paginate_by = 10
+    mensaje = "Cargos"
+    # context = {"mensaje": mensaje}
+    template_name = "pages/cargosSelect.html"
+
+    def get_context_data(self, **kwargs):
+        # Obtiene el contexto base de la superclase
+        context = super().get_context_data(**kwargs)
+        # Añade una variable personalizada al contexto
+        context["mensaje"] = "Cargos"
+        return context
+
+
+class CargosDetailView(DetailView):
+    model = Cargos
+    template_name = "pages/cargosSelectDetail.html"
+    context_object_name = "cargos"
+
+
+class CargosCreateView(CreateView):
+    model = Cargos
+    form_class = CargosForm
+    template_name = "pages/cargosAdd.html"
+    success_url = reverse_lazy("vCargosSelect")
+
+    def get_context_data(self, **kwargs):
+        # Obtiene el contexto base de la superclase
+        context = super().get_context_data(**kwargs)
+        # Añade una variable personalizada al contexto
+        context["mensaje"] = "Cargos"
+        return context
 
 
 #####################TipoDocumento

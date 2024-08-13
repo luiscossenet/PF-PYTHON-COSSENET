@@ -1,5 +1,5 @@
 from django import forms
-from .models import Estado
+from .models import Estado, Empresa, Cargos
 
 
 class EstadoForm(forms.Form):
@@ -152,6 +152,46 @@ class EstadoDelForm(forms.Form):
         ),
         input_formats=["%Y-%m-%d"],
     )
+
+
+class CargosForm(forms.ModelForm):
+    class Meta:
+        model = Cargos
+        fields = [
+            "nombre",
+            "id_empresa",
+            "id_estado",
+            "usuario_alta",
+            "fecha_alta",
+        ]
+
+    id_empresa = forms.ModelChoiceField(
+        queryset=Empresa.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        label="Empresa",
+        empty_label="Seleccione una empresa",
+    )
+
+    id_estado = forms.ModelChoiceField(
+        queryset=Estado.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        label="Estado",
+        empty_label="Seleccione un estado",
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Personalizar la etiqueta que se muestra para cada empresa
+        self.fields["id_empresa"].label_from_instance = lambda obj: obj.nombre
+        self.fields["id_estado"].label_from_instance = lambda obj: obj.nombre
+
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Personalizar la etiqueta que se muestra para cada empresa
+        self.fields["id_empresa"].label_from_instance = lambda obj: obj.codigo_documento
+    """
+
     """
     def __init__(self, *args, **kwargs):
         super(EstadoForm, self).__init__(*args, **kwargs)
