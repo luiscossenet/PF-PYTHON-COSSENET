@@ -27,46 +27,47 @@
                 <p>Resultado</p>
                 <p>{{ respuesta }}</p>
                 <table class="table table-bordered table-hover table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>ID Estado</th>
-                            <th>Fecha de Alta</th>
-                            <th>Actualizar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-						{% for estado in mensaje %}
-						<tr>
-						  <td>{{ estado.id }}</td>
-						  <td>{{ estado.nombre }}</td>
-						  <td>{{ estado.id_estado }}</td>
-						  <td>{{ estado.fecha_alta }}</td>
-						  <td>
-							<form
-							  action="{% url 'vEstadoUpdateRowForm' estado.id %}"
-							  method="POST"
-							  style="display: inline"
-							>
-							  {% csrf_token %}
-							  <button type="submit" class="btn btn-primary">Actualizar</button>
-							</form>
-						  </td>
-						  <td>
-							<form
-							  action="{% url 'vEstadoDeleteRowForm' estado.id %}"
-							  method="POST"
-							  style="display: inline"
-							>
-							  {% csrf_token %}
-							  <button type="submit" class="btn btn-danger">Eliminar</button>
-							</form>
-						  </td>
-						</tr>
-						{% endfor %}
-                    </tbody>
+						<thead class="thead-dark">
+							<tr>
+								<th>ID</th>
+								<th>Nombre</th>
+								<th>ID Estado</th>
+								<th>Fecha de Alta</th>
+								<th>Actualizar</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>
+					
+							{% for estado in mensaje %}
+							<tr>
+								<td>{{ estado.id }}</td>
+								<td>{{ estado.nombre }}</td>
+								<td>{{ estado.id_estado }}</td>
+								<td>{{ estado.fecha_alta }}</td>
+								<td>
+									<form
+										action="{% url 'vEstadoUpdateRowForm' estado.id %}"
+										method="post"
+										style="display: inline"
+									>
+									{% csrf_token %}
+									<button type="submit" class="btn btn-primary">Actualizar</button>
+									</form>
+								</td>
+								<td>
+									<form
+									action="{% url 'vEstadoDeleteRowForm' estado.id %}"
+									method="POST"
+									style="display: inline"
+									>
+									{% csrf_token %}
+									<button type="submit" class="btn btn-danger">Eliminar</button>
+									</form>
+								</td>
+							</tr>
+							{% endfor %}
+                    	</tbody>
                 </table>
             </div>
             {% endif %}
@@ -74,4 +75,3 @@
         </section>
     </main>
 {% endblock %}
-
