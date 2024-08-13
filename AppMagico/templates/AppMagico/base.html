@@ -76,10 +76,11 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Estados</a></li>
                                 <ul class="dropdown-menu-item">
-                                    <li><a class="dropdown-item" href="/pages/addEstados/">Crear Estados</a></li>
-                                    <li><a class="dropdown-item" href="/pages/selEstados/">Consultar Estados</a></li>
-                                    <li><a class="dropdown-item" href="/pages/selEstadosAll/">Listar Estados</a></li>
-                                    <li><a class="dropdown-item" href="/pages/updEstados/">Actualizar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'vEstadosAdd' %}">Crear Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'vEstadosSelect' %}">Consultar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'vEstadosSelectAll' %}">Listar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'vEstadosUpdate' %}">Actualizar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'vEstadosDelete' %}">Eliminar Estados</a></li>                                    
                                 </ul>    
                                 <li><a class="dropdown-item" href="#">Tipo Documento</a></li>
                                 <ul class="dropdown-menu-item">

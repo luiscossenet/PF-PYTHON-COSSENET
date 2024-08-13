@@ -79,6 +79,7 @@ class EstadoUpdForm(forms.Form):
             attrs={
                 "class": "form-control",
                 "placeholder": "Ingrese el Codigo del Estado",
+                "readonly": "readonly",
             }
         ),
     )
@@ -94,10 +95,63 @@ class EstadoUpdForm(forms.Form):
     )
     fechaRegistro = forms.DateField(
         label="Fecha de Registro",
-        widget=forms.DateInput(attrs={"class": "form-control", "type": "date"}),
+        widget=forms.DateInput(
+            attrs={
+                "class": "form-control",
+                "type": "date",
+                "readonly": "readonly",
+            }
+        ),
         input_formats=["%Y-%m-%d"],
     )
 
+
+class EstadoDelForm(forms.Form):
+    # model = Estado
+    id = forms.IntegerField(
+        label="ID",
+        widget=forms.NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ingrese el ID",
+                "readonly": "readonly",
+            }
+        ),
+        required=False,
+    )
+    codigoEstado = forms.CharField(
+        label="Codigo Estado",
+        max_length=1,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ingrese el Codigo del Estado",
+                "readonly": "readonly",
+            }
+        ),
+    )
+    nombreEstado = forms.CharField(
+        label="Nombre Estado",
+        max_length=255,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Ingrese el Nombre del Estado",
+                "readonly": "readonly",
+            }
+        ),
+    )
+    fechaRegistro = forms.DateField(
+        label="Fecha de Registro",
+        widget=forms.DateInput(
+            attrs={
+                "class": "form-control",
+                "type": "date",
+                "readonly": "readonly",
+            }
+        ),
+        input_formats=["%Y-%m-%d"],
+    )
     """
     def __init__(self, *args, **kwargs):
         super(EstadoForm, self).__init__(*args, **kwargs)

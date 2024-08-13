@@ -1,0 +1,66 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Eliminar Estados{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Eliminar Estados de Registros</h2>
+            <article>
+                {% if pFormEstado.errors %}
+                <p style="color: red;">Por favor corrija los errores debajo.</p>
+            {% endif %}
+            <!--/pages/test/ -->
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                    {{ pFormEstado.as_table }}
+                </table>
+                <input type="submit" value="Enviar">
+            </form>
+            </article>
+            {% if mensaje %}
+            <div class="container text-center alert alert-success" role="alert">
+                <p>Resultado</p>
+                <p>{{ respuesta }}</p>
+                <table class="table table-bordered table-hover table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th>ID</th>
+								<th>Nombre</th>
+								<th>ID Estado</th>
+								<th>Fecha de Alta</th>
+								<th>Eliminar</th>
+							</tr>
+						</thead>
+						<tbody>
+					
+							{% for estado in mensaje %}
+							<tr>
+								<td>{{ estado.id }}</td>
+								<td>{{ estado.nombre }}</td>
+								<td>{{ estado.id_estado }}</td>
+								<td>{{ estado.fecha_alta }}</td>
+								<td>
+									<form
+									action="{% url 'vEstadosDeleteRow' estado.id %}"
+									method="POST"
+									style="display: inline"
+									>
+									{% csrf_token %}
+									<button type="submit" class="btn btn-danger">Eliminar</button>
+									</form>
+								</td>
+							</tr>
+							{% endfor %}
+                    	</tbody>
+                </table>
+            </div>
+            {% endif %}
+            
+        </section>
+    </main>
+{% endblock %}

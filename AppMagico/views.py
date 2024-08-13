@@ -63,7 +63,7 @@ def entregables(request):
 # CRUD operations for each model
 
 
-def ViewEstadoForm(request):
+def estadosViewAdd(request):
     if request.method == "POST":
 
         myFormEstado = EstadoForm(request.POST)  # Aqui me llega la informacion del html
@@ -93,17 +93,17 @@ def ViewEstadoForm(request):
             myFormEstado = EstadoForm()
             return render(
                 request,
-                "pages/addEstados.html",
+                "pages/estadosAdd.html",
                 {"pFormEstado": myFormEstado, "mensaje": mensaje},
             )
     else:
         myFormEstado = EstadoForm()
 
-    return render(request, "pages/addEstados.html", {"pFormEstado": myFormEstado})
+    return render(request, "pages/estadosAdd.html", {"pFormEstado": myFormEstado})
 
 
 #####################ESTADO SELECT ############################
-def ViewEstadoSelectForm(request):
+def estadosViewSelect(request):
     if request.method == "POST":
 
         myFormEstado = EstadoSelectForm(
@@ -141,15 +141,15 @@ def ViewEstadoSelectForm(request):
             # print({"mensaje": mensaje, "status_code": statuscode})
             # mensaje = "Estado grabado exitosamente"
             # myFormEstado = EstadoForm()
-            return render(request, "pages/selEstados.html", context)
+            return render(request, "pages/estadosSelect.html", context)
     else:
         myFormEstado = EstadoSelectForm()
 
-    return render(request, "pages/selEstados.html", {"pFormEstado": myFormEstado})
+    return render(request, "pages/estadosSelect.html", {"pFormEstado": myFormEstado})
 
 
 #####################LISTAR ESTADO SELECT ############################
-def ViewEstadoSelectAllForm(request):
+def estadosViewSelectAll(request):
     if request.method == "POST":
 
         myFormEstado = EstadoSelectAllForm(
@@ -187,15 +187,15 @@ def ViewEstadoSelectAllForm(request):
             # print({"mensaje": mensaje, "status_code": statuscode})
             # mensaje = "Estado grabado exitosamente"
             # myFormEstado = EstadoForm()
-            return render(request, "pages/selEstadosAll.html", context)
+            return render(request, "pages/estadosSelectAll.html", context)
     else:
         myFormEstado = EstadoSelectAllForm()
 
-    return render(request, "pages/selEstadosAll.html", {"pFormEstado": myFormEstado})
+    return render(request, "pages/estadosSelectAll.html", {"pFormEstado": myFormEstado})
 
 
 ##################### UPDATE ESTADO SELECT ############################
-def ViewEstadoUpdateForm(request):
+def estadosViewUpdate(request):
     if request.method == "POST":
 
         myFormEstado = EstadoSelectAllForm(
@@ -219,8 +219,6 @@ def ViewEstadoUpdateForm(request):
                     "respuesta": "Estado consultado",
                     "pFormEstado": myFormEstado,
                 }
-
-                # print("Estado grabado")
             except:
                 context = {
                     "mensaje": resultadoConsulta,
@@ -229,19 +227,15 @@ def ViewEstadoUpdateForm(request):
                     "respuesta": "Estado consultado, sin regsitros",
                     "pFormEstado": myFormEstado,
                 }
-                # print("El registro ya existe")
-            # print({"mensaje": mensaje, "status_code": statuscode})
-            # mensaje = "Estado grabado exitosamente"
-            # myFormEstado = EstadoForm()
-            return render(request, "pages/updEstados.html", context)
+            return render(request, "pages/estadosUpdate.html", context)
     else:
         myFormEstado = EstadoSelectAllForm()
 
-    return render(request, "pages/updEstados.html", {"pFormEstado": myFormEstado})
+    return render(request, "pages/estadosUpdate.html", {"pFormEstado": myFormEstado})
 
 
-"""
-def ViewEstadoUpdateRowForm(request, id):
+##################### UPDATE ESTADO ROW ############################
+def estadosViewUpdateRow(request, id):
     # estado = get_object_or_404(Estado, id=id)
     estado = Estado.objects.get(id=id)
     data = {
@@ -251,77 +245,32 @@ def ViewEstadoUpdateRowForm(request, id):
         "nombreEstado": estado.nombre,
         "fechaRegistro": estado.fecha_alta.strftime("%Y-%m-%d"),
     }
-    print(data)
-    # myFormEstado = EstadoUpdForm(data)
-    # return render(request, "pages/updEstadosRow.html", {"pFormEstado": myFormEstado})
     if request.method == "POST":
-        print("Hola Post 249")
-        myFormEstado = EstadoUpdForm(data)
-        if myFormEstado.is_valid():
-            print("Hola Post 252")
-            # myFormEstado.save()
-            return redirect(
-                "pages/updEstados.html"
-            )  # Replace 'nombre_de_la_vista' with the actual name of the view you want to redirect to
-    else:
-        myFormEstado = EstadoUpdForm(instance=estado)
-
-    return render(request, "pages/updEstados.html", {"pFormEstado": myFormEstado})
-"""
-
-
-##################### UPDATE ESTADO SELECT ############################
-def ViewEstadoUpdateRowForm(request, id):
-    # estado = get_object_or_404(Estado, id=id)
-    estado = Estado.objects.get(id=id)
-    data = {
-        "Nombre": "Hola",
-        "id": estado.id,
-        "codigoEstado": estado.id_estado,
-        "nombreEstado": estado.nombre,
-        "fechaRegistro": estado.fecha_alta.strftime("%Y-%m-%d"),
-    }
-    # print(data)
-    # myFormEstado = EstadoUpdForm(data)
-    # return render(request, "pages/updEstadosRow.html", {"pFormEstado": myFormEstado})
-    if request.method == "POST":
-        print("id: 251", id)
         myFormEstado = EstadoUpdForm(data)  # Ligamos el formulario al objeto existente
         # Aqui me llega la informacion del html
-        print("id: 253", "ESTAAAA")
-        print("id: 254", myFormEstado)
         if myFormEstado.is_valid():
-
-            print("id: 256", id)
-            # informacion = myFormEstado.cleaned_data
             informacion = myFormEstado.cleaned_data.copy()
             informacion["fechaRegistro"] = informacion["fechaRegistro"].strftime(
                 "%Y-%m-%d"
             )
-            print("id: 258", informacion)
-            # estado = Estado(id=informacion["id"])
             myFormEstado = EstadoUpdForm(informacion)
             return render(
-                request, "pages/updEstadosRow.html", {"pFormEstado": myFormEstado}
+                request, "pages/estadosUpdateRow.html", {"pFormEstado": myFormEstado}
             )
 
     else:
         myFormEstado = EstadoSelectAllForm()
 
-    return render(request, "pages/updEstados.html", {"pFormEstado": myFormEstado})
+    return render(request, "pages/estadosUpdate.html", {"pFormEstado": myFormEstado})
 
 
-def ViewEstadoUpdateRowCommitForm(request):
-    print("id:commit 267", request.method)
+##################### UPDATE ESTADO ROW COMMIT ############################
+def estadosViewUpdateRowCommit(request):
     if request.method == "POST":
-        print("id:commit 271", request.POST)
         myFormEstado = EstadoUpdForm(
             request.POST
         )  # Ligamos el formulario al objeto existente
-        print(myFormEstado)
-
         if myFormEstado.is_valid():
-            print("id: 278", myFormEstado)
             informacion = myFormEstado.cleaned_data
             estado = Estado(
                 id=informacion["id"],
@@ -329,7 +278,6 @@ def ViewEstadoUpdateRowCommitForm(request):
                 nombre=informacion["nombreEstado"],
                 fecha_alta=informacion["fechaRegistro"],
             )
-            print("id: 283", estado)
             try:
                 estado.save()
                 mensaje = f"Registro Actualizado. Estado: {estado.nombre} con codigo: {estado.id_estado} y fecha de registro: {estado.fecha_alta}"
@@ -341,24 +289,14 @@ def ViewEstadoUpdateRowCommitForm(request):
                 statuscode = 500
                 swEstado = False
                 myFormEstado = EstadoSelectAllForm()
-
-            return render(
-                request,
-                "pages/updEstados.html",
-                {"pFormEstado": EstadoSelectAllForm, "mensaje": mensaje},
-            )
+            return redirect("vEstadosUpdate")
         else:
             myFormEstado = EstadoSelectAllForm()
-    # print("id: 301", EstadoSelectAllForm)
-    # return render(
-    #    request, "pages/updEstados.html", {"pFormEstado": EstadoSelectAllForm}
-    # )
-    return redirect("/pages/updEstados/")
+    return redirect("vEstadosUpdate")
 
 
-##################### DELETEESTADO SELECT ############################
-def ViewEstadoDeleteForm(request):
-
+##################### DELETE ESTADO SELECT ############################
+def estadosViewDelete(request):
     if request.method == "POST":
 
         myFormEstado = EstadoSelectAllForm(
@@ -383,7 +321,6 @@ def ViewEstadoDeleteForm(request):
                     "pFormEstado": myFormEstado,
                 }
 
-                # print("Estado grabado")
             except:
                 context = {
                     "mensaje": resultadoConsulta,
@@ -392,93 +329,71 @@ def ViewEstadoDeleteForm(request):
                     "respuesta": "Estado consultado, sin regsitros",
                     "pFormEstado": myFormEstado,
                 }
-                # print("El registro ya existe")
-            # print({"mensaje": mensaje, "status_code": statuscode})
-            # mensaje = "Estado grabado exitosamente"
-            # myFormEstado = EstadoForm()
-            return render(request, "pages/updEstados.html", context)
+            return render(request, "pages/estadosDelete.html", context)
     else:
         myFormEstado = EstadoSelectAllForm()
 
-    return render(request, "pages/updEstados.html", {"pFormEstado": myFormEstado})
+    return render(request, "pages/estadosDelete.html", {"pFormEstado": myFormEstado})
 
 
-##################### UPDATE ESTADO SELECT ############################
-def ViewEstadoDeleteRowForm(request, id):
+##################### DELETE ESTADO ROW ############################
+def estadosViewDeleteRow(request, id):
+    estado = Estado.objects.get(id=id)
+    data = {
+        "Nombre": "Hola",
+        "id": estado.id,
+        "codigoEstado": estado.id_estado,
+        "nombreEstado": estado.nombre,
+        "fechaRegistro": estado.fecha_alta.strftime("%Y-%m-%d"),
+    }
     if request.method == "POST":
+        myFormEstado = EstadoUpdForm(data)  # Ligamos el formulario al objeto existente
+        # Aqui me llega la informacion del html
+        if myFormEstado.is_valid():
+            informacion = myFormEstado.cleaned_data.copy()
+            informacion["fechaRegistro"] = informacion["fechaRegistro"].strftime(
+                "%Y-%m-%d"
+            )
+            myFormEstado = EstadoDelForm(informacion)
+            return render(
+                request, "pages/estadosDeleteRow.html", {"pFormEstado": myFormEstado}
+            )
 
-        myFormEstado = EstadoSelectAllForm(
+    else:
+        myFormEstado = EstadoSelectAllForm()
+
+    return render(request, "pages/estadosDelete.html", {"pFormEstado": myFormEstado})
+
+
+##################### DELETE ESTADO ROW COMMIT ############################
+def estadosViewDeleteRowCommit(request):
+    if request.method == "POST":
+        myFormEstado = EstadoUpdForm(
             request.POST
-        )  # Aqui me llega la informacion del html
-        print(myFormEstado)
-
+        )  # Ligamos el formulario al objeto existente
         if myFormEstado.is_valid():
-
             informacion = myFormEstado.cleaned_data
-            estado = Estado(nombre=informacion["nombreEstado"])
-            myFormEstado = EstadoSelectAllForm()
+            estado = Estado(
+                id=informacion["id"],
+                id_estado=informacion["codigoEstado"],
+                nombre=informacion["nombreEstado"],
+                fecha_alta=informacion["fechaRegistro"],
+            )
             try:
-                resultadoConsulta = Estado.objects.filter(
-                    nombre__icontains=estado.nombre
-                )
-                context = {
-                    "mensaje": resultadoConsulta,
-                    "statuscode": 200,
-                    "swEstado": True,
-                    "respuesta": "Estado consultado",
-                    "pFormEstado": myFormEstado,
-                }
-
-                # print("Estado grabado")
-            except:
-                context = {
-                    "mensaje": resultadoConsulta,
-                    "statuscode": 200,
-                    "swEstado": True,
-                    "respuesta": "Estado consultado, sin regsitros",
-                    "pFormEstado": myFormEstado,
-                }
-                # print("El registro ya existe")
-            # print({"mensaje": mensaje, "status_code": statuscode})
-            # mensaje = "Estado grabado exitosamente"
-            # myFormEstado = EstadoForm()
-            return render(request, "pages/updEstados.html", context)
-    else:
-        myFormEstado = EstadoSelectAllForm()
-
-    return render(request, "pages/updEstados.html", {"pFormEstado": myFormEstado})
-
-
-"""
-def ViewEstadoUpdateForm(request, id):
-    # Obtener el estado existente o mostrar un 404 si no existe
-    estado = get_object_or_404(Estado, pk=id)
-
-    if request.method == "POST":
-        myFormEstado = EstadoForm(request.POST, instance=estado)  # Ligamos el formulario al objeto existente
-
-        if myFormEstado.is_valid():
-            try:
-                myFormEstado.save()
+                estado.delete()
                 mensaje = f"Registro Actualizado. Estado: {estado.nombre} con codigo: {estado.id_estado} y fecha de registro: {estado.fecha_alta}"
                 statuscode = 200
                 swEstado = True
+                myFormEstado = EstadoSelectAllForm()
             except:
                 mensaje = f"Error al actualizar. Estado: {estado.nombre} con codigo: {estado.id_estado}"
                 statuscode = 500
                 swEstado = False
-
-            return render(
-                request,
-                "pages/updateEstados.html",
-                {"pFormEstado": myFormEstado, "mensaje": mensaje},
-            )
-    else:
-        myFormEstado = EstadoForm(instance=estado)
-
-    return render(request, "pages/updateEstados.html", {"pFormEstado": myFormEstado})
-
-"""
+                myFormEstado = EstadoSelectAllForm()
+            return redirect("vEstadosDelete")
+        else:
+            myFormEstado = EstadoSelectAllForm()
+    return redirect("vEstadosDelete")
 
 
 #####################TipoDocumento
