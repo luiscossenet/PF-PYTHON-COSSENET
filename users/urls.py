@@ -1,5 +1,6 @@
 from django.urls import path
 from users import views
+
 from .views import CustomLogoutView
 
 # from django.contrib.auth.views import LogoutView

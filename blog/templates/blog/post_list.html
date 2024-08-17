@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Blog Posts</title>
-  </head>
-  <body>
-    <h1>Blog Posts</h1>
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Blog - Detalle Post{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Blog Posts</h2>
+            <article>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column">
     <ul>
       {% for post in posts %}
       <li>
-        <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+        <h3>
+          <a href="{% url 'RV_vpost_detail' post.id %}">{{ post.title }}</a>
+        </h3>
         <p>{{ post.content }}</p>
         <p>Start Date: {{ post.start_date }}</p>
         <p>End Date: {{ post.end_date }}</p>
@@ -20,10 +38,14 @@
           {% endfor %}
         </div>
         {% endif %}
-        <a href="{% url 'update_post' post.id %}">Edit</a>
-        <a href="{% url 'delete_post' post.id %}">Delete</a>
+        <a href="{% url 'RV_vupdate_post' post.id %}">Edit</a>
+        <a href="{% url 'RV_vdelete_post' post.id %}">Delete</a>
       </li>
       {% endfor %}
     </ul>
-  </body>
-</html>
+  </div>
+</div>  
+</article>
+</section>
+</main>
+{% endblock %}

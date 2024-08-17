@@ -1,26 +1,39 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, authenticate
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserProfileForm
 from django.contrib.auth.views import LogoutView
 from django.contrib import messages
+import socket
+from .models import UserProfile
+from .utils import UserActivity
 
-"""
-from django.http import HttpResponse
-from .models import *
-from django.template import Template, Context, loader
-from AppMagico.forms import *
-from django.shortcuts import get_object_or_404
-import requests
-from django.urls import reverse_lazy
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.paginator import Paginator
-from django.core.paginator import EmptyPage
-from .forms import UserRegisterForm
-from django.contrib.auth import logout
-"""
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+    profile = get_object_or_404(UserProfile, user=user)
+    return render(request, 'profile.html', {'profile': profile})
+
+def edit_profile(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.updated_by = request.user
+            user_activity = UserActivity(request)
+            activity_data = user_activity.get_user_activity()
+            profile.updated_ip_public = activity_data['ip_public']
+            profile.updated_ip_local = activity_data['ip_local']
+            profile.updated_host = activity_data['host_name']
+            profile.updated_os = activity_data['os']
+            profile.updated_browser = activity_data['browser']
+            if 'profile_picture' in request.FILES:
+                profile.profile_picture_original_name = request.FILES['profile_picture'].name
+            profile.save()
+            return redirect('profile', username=request.user.username)
+    else:
+        form = UserProfileForm(instance=profile)
+    return render(request, 'edit_profile.html', {'form': form})
 
 
 # Create your views here.

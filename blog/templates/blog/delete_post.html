@@ -1,15 +1,36 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Delete Post</title>
-  </head>
-  <body>
-    <h1>Delete Post</h1>
-    <p>Are you sure you want to delete the post titled "{{ post.title }}"?</p>
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Blog - Eliminar Post{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Eliminar Posts "{{ post.title }}"?</h2>
+            <article>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column">
+    <p>Esta seguro de borrar el POST(Publicacion) con nombre: "{{ post.title }}"?</p>
     <form method="post">
       {% csrf_token %}
       <button type="submit">Yes, delete</button>
-      <a href="{% url 'post_list' %}">Cancel</a>
+      <a href="{% url 'RV_vpost_list' %}">Cancel</a>
     </form>
-  </body>
-</html>
+  </div>
+</div>  
+</article>
+</section>
+</main>
+{% endblock %}
+

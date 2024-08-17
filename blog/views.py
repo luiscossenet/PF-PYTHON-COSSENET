@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User  # Add this import statement
 from .forms import PostForm, ImageForm, CommentForm, CategoryForm, SubcategoryForm
 from .models import Post, Image, Comment, Category, SubCategory
 
 
+#######################################
 def create_post(request):
     if request.method == "POST":
         post_form = PostForm(request.POST)
@@ -14,7 +16,9 @@ def create_post(request):
             images = request.FILES.getlist("image")
             for image in images:
                 Image.objects.create(post=post, image=image)
-            return redirect("post_list")  # Redirect to a list of posts or another page
+            return redirect(
+                "RV_vpost_list"
+            )  # Redirect to a list of posts or another page
     else:
         post_form = PostForm()
         image_form = ImageForm()
@@ -36,7 +40,9 @@ def update_post(request, post_id):
             images = request.FILES.getlist("image")
             for image in images:
                 Image.objects.create(post=post, image=image)
-            return redirect("post_list")  # Redirect to a list of posts or another page
+            return redirect(
+                "RV_vpost_list"
+            )  # Redirect to a list of posts or another page
     else:
         post_form = PostForm(instance=post)
         image_form = ImageForm()
@@ -51,7 +57,7 @@ def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if request.method == "POST":
         post.delete()
-        return redirect("post_list")  # Redirect to a list of posts or another page
+        return redirect("RV_vpost_list")  # Redirect to a list of posts or another page
     return render(request, "blog/delete_post.html", {"post": post})
 
 
@@ -68,7 +74,7 @@ def post_detail(request, post_id):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            return redirect("post_detail", post_id=post.id)
+            return redirect("RV_vpost_detail", post_id=post.id)
     else:
         comment_form = CommentForm()
     return render(
@@ -87,7 +93,7 @@ def create_category(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("category_list")
+            return redirect("RV_vcategory_list")
     else:
         form = CategoryForm()
     return render(request, "blog/create_category.html", {"form": form})
@@ -97,7 +103,6 @@ def update_category(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     if request.method == "POST":
         form = CategoryForm(request.POST, instance=category)
-        print("hola 100")
         if form.is_valid():
             form.save()
             return redirect("RV_vcategory_list")

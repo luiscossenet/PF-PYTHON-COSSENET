@@ -1,5 +1,6 @@
 from django import forms
-from .models import Post, Image, Comment, Category, SubCategory
+from .models import Post, Image, Comment, Category, SubCategory # Asegúrate de que tienes un modelo llamado UserProfile
+
 
 
 class PostForm(forms.ModelForm):

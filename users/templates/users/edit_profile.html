@@ -1,7 +1,7 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
 
-{% block title %}Mágico Aprendizaje - Blog - Update Post{% endblock %}
+{% block title %}Mágico Aprendizaje - Blog - Detalle Post{% endblock %}
 {% block messages %}
     {% if messages %}
         <ul class="messages">
@@ -17,19 +17,18 @@
            <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
                 alt="Imagen Principal Magico Aprendizaje">
             -->    
-            <h2>Actualizar Post</h2>
+            <h2>Editar Perfil</h2>
             <article>
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex flex-column">
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %} {{ post_form.as_p }} {{ image_form.as_p }}
-      <button type="submit">Update</button>
-    </form>
-    <a href="{% url 'RV_vpost_list' %}">Cancel</a>
-  </div>
-</div>  
-</article>
-</section>
-</main>
-{% endblock %}
-
+              <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}   
+                    <button type="submit">Save changes</button>
+                </form>
+            </div>
+        </div>
+      </article>
+        </section>
+      </main>
+  {% endblock %}

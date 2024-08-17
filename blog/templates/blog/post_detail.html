@@ -1,7 +1,7 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
 
-{% block title %}Mágico Aprendizaje - Blog - Update Post{% endblock %}
+{% block title %}Mágico Aprendizaje - {{ post.title }}{% endblock %}
 {% block messages %}
     {% if messages %}
         <ul class="messages">
@@ -17,19 +17,26 @@
            <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
                 alt="Imagen Principal Magico Aprendizaje">
             -->    
-            <h2>Actualizar Post</h2>
+            <h2>{{ post.title }}</h2>
             <article>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex flex-column">
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %} {{ post_form.as_p }} {{ image_form.as_p }}
-      <button type="submit">Update</button>
-    </form>
-    <a href="{% url 'RV_vpost_list' %}">Cancel</a>
+    <p>{{ post.content }}</p>
+    <p>Start Date: {{ post.start_date }}</p>
+    <p>End Date: {{ post.end_date }}</p>
+    <p>Type: {{ post.get_post_type_display }}</p>
+    {% if post.images.all %}
+    <div>
+      {% for image in post.images.all %}
+      <img src="{{ image.image.url }}" alt="Image for {{ post.title }}" />
+      <p>{{ image.image.url }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <a href="{% url 'RV_vpost_list' %}">Back to Posts</a>
   </div>
 </div>  
 </article>
 </section>
 </main>
 {% endblock %}
-

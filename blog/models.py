@@ -1,9 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User  # Import User model
+import os
 import uuid
 from AppMagico.models import Estado, Empresa  # Import Estado and Empresa from AppMagico
+from django.utils import timezone
 
 
+# Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -44,9 +47,15 @@ class Post(models.Model):
         return self.title
 
 
+def get_image_upload_path(instance, filename):
+    # Genera la ruta de almacenamiento, añadiendo la carpeta con el ID del post
+    # Usa os.path.join con argumentos separados por '/', que es el separador correcto en este contexto.
+    return os.path.join("blog/post", str(instance.post.id), filename).replace("\\", "/")
+
+
 class Image(models.Model):
     post = models.ForeignKey(Post, related_name="images", on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/")
+    image = models.ImageField(upload_to=get_image_upload_path)
     unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 
     def __str__(self):

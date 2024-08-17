@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -56,9 +57,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "MagicoBq.urls"
 
+#####################IMPLEMENTADO#####################
 LOGIN_URL = "Login"
 LOGIN_REDIRECT_URL = "incio"
 
+# La URL base para servir archivos multimedia
+MEDIA_URL = "/media/"
+
+# El directorio donde se almacenan los archivos multimedia
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+#####################FIN IMPLEMENTACION#####################
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
