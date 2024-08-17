@@ -47,7 +47,7 @@
 								<td>{{ estado.fecha_alta }}</td>
 								<td>
 									<form
-										action="{% url 'vEstadosUpdateRow' estado.id %}"
+										action="{% url 'RV_vEstadosUpdateRow' estado.id %}"
 										method="post"
 										style="display: inline"
 									>
@@ -57,7 +57,7 @@
 								</td>
 								<td>
 									<form
-									action="{% url 'vEstadosDeleteRow' estado.id %}"
+									action="{% url 'RV_vEstadosDeleteRow' estado.id %}"
 									method="POST"
 									style="display: inline"
 									>

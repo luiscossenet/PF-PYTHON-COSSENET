@@ -15,7 +15,7 @@
                 <p style="color: red;">Por favor corrija los errores debajo.</p>
             {% endif %}
             <!--/pages/test/ -->
-            <form action="{% url 'vEstadosDeleteRowCommit' %}" method="POST">{% csrf_token %}
+            <form action="{% url 'RV_vEstadosDeleteRowCommit' %}" method="POST">{% csrf_token %}
                 <table>
                     {{ pFormEstado.as_table }}
                 </table>

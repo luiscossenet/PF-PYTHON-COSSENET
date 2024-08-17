@@ -38,6 +38,7 @@
         <div class="row container-bar ">
             <div class="bar"></div>
         </div>
+        <!---MENU-->
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="index.html">Magico Aprendizaje</a>
@@ -45,62 +46,177 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+
                         <li class="nav-item">
                             <a class="nav-link" href="/">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button">
-                                Servicios
-                            </a>
+                        </li>                    
+                    <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle"
+                          href="#"
+                          id="estadosDropdown"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Servicios
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="estadosDropdown">
+                          <li><a class="dropdown-item" href="/pages/clubdelectura/">Club de Lectura</a></li>
+                          <li><a class="dropdown-item" href="/pages/clubdelectura/">Club de Lectura</a></li>
+                          <li><a class="dropdown-item" href="/pages/clubderefuerzos/">Club de Refuerzos</a></li>
+                          <li><a class="dropdown-item" href="/pages/clubtardesmagicas">Club Tardes Mágicas</a></li>
+                          <li><a class="dropdown-item" href="/pages/clubtareasdirigidas">Club Tareas Dirigidas</a></li>
+                          <li><a class="dropdown-item" href="/pages/clubtallerintegrado">Club Taller Integrado</a></li>                          
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/contactenos" target="_blank">Contactenos</a>
+                    </li> 
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'Register' %}" target="_blank">Registrar</a>
+                    </li> 
+                    {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'Login' %}?next={{request.path}}" >Iniciar Sesion</a>
+                    </li>     
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" target="_blank">User: {{ user.get_username }}</a>
+                   </li>          
+                    <li class="nav-item">
+                      <form method="POST" action="{% url 'Logout' %}">
+                        {% csrf_token %}
+                        <input class="btn btn-primary" type="submit" value="Cerrar Sesión">
+                    </form>
+                    </li>  
+                    {% endif %}                       
+                    <li class="nav-item dropdown">
+                        <a
+                          class="nav-link dropdown-toggle"
+                          href="#"
+                          id="estadosDropdown"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Menu Sistema
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="estadosDropdown">
+                          <!-- Opción 1 -->
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">Maestros</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/pages/clubdelectura/">Club de Lectura</a></li>
-                                <li><a class="dropdown-item" href="/pages/clubderefuerzos/">Club de Refuerzos</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/pages/clubtardesmagicas">Club Tardes
-                                        Mágicas</a></li>
-                                <li><a class="dropdown-item" href="/pages/clubtareasdirigidas">Club Tareas
-                                        Dirigidas</a></li>
-                                <li><a class="dropdown-item" href="/pages/clubtallerintegrado">Club Taller
-                                        Integrado</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/pages/contactenos" target="_blank">Contactenos</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button">
-                                CRUD
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Estados</a></li>
-                                <ul class="dropdown-menu-item">
-                                    <li><a class="dropdown-item" href="{% url 'vEstadosAdd' %}">Crear Estados</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'vEstadosSelect' %}">Consultar Estados</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'vEstadosSelectAll' %}">Listar Estados</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'vEstadosUpdate' %}">Actualizar Estados</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'vEstadosDelete' %}">Eliminar Estados</a></li>                                    
-                                </ul>    
-                                <li><a class="dropdown-item" href="#">Tipo Documento</a></li>
-                                <ul class="dropdown-menu-item">
+                              <!-- Subopción 1-1 -->
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Estados</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'RV_vEstadosAdd' %}">Crear Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vEstadosSelect' %}">Consultar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vEstadosSelectAll' %}">Listar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vEstadosUpdate' %}">Actualizar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vEstadosDelete' %}">Eliminar Estados</a></li>                                      
+                                </ul>
+                              </li>
+                              <!-- Subopción 1-2 -->
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Empresa</a>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Subopción 1-2-1</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Subopción 1-2-2</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Subopción 1-2-3</a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <!-- Subopción 1-3 -->
+                              <li class="dropdown-submenu"><a class="dropdown-item" href="#">Tipo Documento</a>
+                                <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/pages/addTipoDocumento/">Crear Tipo Documento</a></li>
-                                    <li><a class="dropdown-item" href="/pages/selTipoDocumento/">Consultar Tipo Documento</a></li>
-                                </ul> 
-                                <li><a class="dropdown-item" href="#">Cargos</a></li>
-                                <ul class="dropdown-menu-item">
-                                    <li><a class="dropdown-item" href="/pages/addCargos/">Crear Cargos</a></li>
-                                    <li><a class="dropdown-item" href="/pages/selCargos/">Consultar Cargos</a></li>
-                                </ul>                                 
+                                    <li><a class="dropdown-item" href="/pages/selTipoDocumento/">Consultar Tipo Documento</a></li>                                    
+                                </ul>
+                              </li>   
+                              <!-- Subopción 1-4 -->                                                         
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Cargos</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosAdd' %}">Crear Cargos</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosSelect' %}">Consultar Cargos</a></li>  
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosUpdate' %}">Actualizar Cargos</a></li>                                 
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosDelete' %}">Borrar Cargos</a></li>
+                                </ul>
+                              </li>
                             </ul>
-                        </li>
-                    </ul>
-                </div>
+                          </li>
+                          <!-- Opción 2 -->
+                          <li class="dropdown-submenu">
+                            <a class="dropdown-item" href="#">Blog</a>
+                            <ul class="dropdown-menu">
+                              <!-- Subopción 1-1 -->
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Categorias</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'RV_vcreate_category' %}">Crear</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vcategory_list' %}">Listar Estados</a></li>
+                                </ul>
+                              </li>
+                              <!-- Subopción 1-2 -->
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Empresa</a>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Subopción 1-2-1</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Subopción 1-2-2</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Subopción 1-2-3</a>
+                                  </li>
+                                </ul>
+                              </li>
+                              <!-- Subopción 1-3 -->
+                              <li class="dropdown-submenu"><a class="dropdown-item" href="#">Tipo Documento</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/pages/addTipoDocumento/">Crear Tipo Documento</a></li>
+                                    <li><a class="dropdown-item" href="/pages/selTipoDocumento/">Consultar Tipo Documento</a></li>                                    
+                                </ul>
+                              </li>   
+                              <!-- Subopción 1-4 -->                                                         
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Cargos</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosAdd' %}">Crear Cargos</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosSelect' %}">Consultar Cargos</a></li>  
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosUpdate' %}">Actualizar Cargos</a></li>                                 
+                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosDelete' %}">Borrar Cargos</a></li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>                          
+                        </ul>
+                      </li>
+                      
+                      
+                </ul>
+              </div>
             </nav>
-        </div>
+          </div>
+        <!---FIN-->
     </header>
     <main>
         <section id="section" class="text-center container">
+          <div class="line">
+          {% block messages %}
+          {% endblock %}
+          </div>
             <h1 translate="no"><a class="a_web" href="/">Magico Aprendizaje</a></h1>    
     {% block content %}
 
@@ -146,6 +262,7 @@
             <p>&copy; 2024 Mágico Aprendizaje. Todos los derechos reservados.</p>
         </div>
     </footer>
+    <script src="{% static 'AppMagico/js/popper.min.js' %}"></script>
     <script src="{% static 'AppMagico/js/bootstrap.min.js' %}"></script>
     {% block scripts %}
 

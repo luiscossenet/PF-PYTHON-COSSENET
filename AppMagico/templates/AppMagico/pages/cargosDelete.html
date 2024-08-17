@@ -1,0 +1,72 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Borrar Cargos{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Borrar Cargos</h2>
+            <article>
+                {% if pFormEstado.errors %}
+                <p style="color: red;">Por favor corrija los errores debajo.</p>
+                {% endif %}
+            <!--/pages/test/ -->
+                <div class="container text-center border">
+                    <form action="" method="POST">{% csrf_token %}
+                        <table>
+                            {{ form.as_p }}
+                        </table>
+                        <input type="submit" value="Enviar">
+                    </form>
+                </div>
+            </article>
+            <div class="container text-center alert alert-success" role="alert">
+                <p>Resultado</p>
+                <p>{{ respuesta }}</p>
+                <table class="table table-bordered table-hover table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>ID Empresa</th>
+                            <th>Empresa</th>
+                            <th>ID Estado</th>
+                            <th>Usuario Alta</th>
+                            <th>Fecha de Alta</th>
+                            <th>Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cargo in cargos %}
+                        <tr>
+                            <td>{{ cargo.id }}</td>
+                            <td>{{ cargo.nombre }}</td>
+                            <td>{{ cargo.id_empresa.numero_documento }}</td>
+                            <td>{{ cargo.id_empresa.nombre }}</td>
+                            <td>{{ cargo.id_estado.nombre }}</td>
+                            <td>{{ cargo.usuario_alta }}</td>
+                            <td>{{ cargo.fecha_alta }}</td>
+                            <td>
+                                <form
+                                    action="{% url 'RV_vCargosDeleteRow' cargo.id %}"
+                                    method="get"
+                                    style="display: inline"
+                                >
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </section>
+    </main>
+{% endblock %}
+

@@ -1,5 +1,7 @@
 from django import forms
-from .models import Estado, Empresa, Cargos
+from .models import Estado, Empresa, Cargos, Usuarios, Tipo_Documento
+from django.contrib.auth.models import User
+import datetime
 
 
 class EstadoForm(forms.Form):
@@ -165,18 +167,61 @@ class CargosForm(forms.ModelForm):
             "fecha_alta",
         ]
 
+    nombre = forms.CharField(
+        label="Nombre",
+        max_length=255,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Ingrese el Nombre del Cargo",
+                "style": "width: 500px;",  # Set the width of the input field
+                "oninput": "this.value = this.value.toUpperCase()",  # Convert input to uppercase
+            }
+        ),
+    )
+    fecha_alta = forms.DateField(
+        label="Fecha de Alta",
+        widget=forms.DateInput(
+            attrs={
+                "type": "date",
+                "value": datetime.date.today().strftime("%Y-%m-%d"),
+                "style": "width: 500px;",  # Set the width of the input field
+            }
+        ),
+        input_formats=["%Y-%m-%d"],
+        initial=datetime.date.today(),
+    )
+
     id_empresa = forms.ModelChoiceField(
         queryset=Empresa.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
+        widget=forms.Select(
+            attrs={
+                "style": "width: 500px;",
+            }
+        ),
         label="Empresa",
         empty_label="Seleccione una empresa",
     )
 
     id_estado = forms.ModelChoiceField(
         queryset=Estado.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        label="Estado",
+        widget=forms.Select(
+            attrs={
+                "style": "width: 500px;",
+            }
+        ),
+        label="Estado ",
         empty_label="Seleccione un estado",
+    )
+
+    usuario_alta = forms.ModelChoiceField(
+        queryset=User.objects.all(),
+        label="Usuario Alta",
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Ingrese el Usuario de Alta",
+                "style": "width: 500px;",  # Set the width of the input field
+            }
+        ),
     )
 
     def __init__(self, *args, **kwargs):
@@ -184,6 +229,7 @@ class CargosForm(forms.ModelForm):
         # Personalizar la etiqueta que se muestra para cada empresa
         self.fields["id_empresa"].label_from_instance = lambda obj: obj.nombre
         self.fields["id_estado"].label_from_instance = lambda obj: obj.nombre
+        self.fields["usuario_alta"].label_from_instance = lambda obj: obj.username
 
     """
     def __init__(self, *args, **kwargs):

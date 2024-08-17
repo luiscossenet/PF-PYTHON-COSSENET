@@ -50,7 +50,7 @@ class Empresa(models.Model):
 
 class Cargos(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255, unique=True)
     id_empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
     usuario_alta = models.CharField(max_length=255)

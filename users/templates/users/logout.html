@@ -1,0 +1,29 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Registro{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Registro</h2>
+            <article>
+              <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                  {% if msg_register %}
+                    <p class ="fs-5 fw-bold danger">{{ msg_register }}</p>
+                  {% endif %}
+               <form method="POST" action="{% url 'Logout' %}">
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit">Logout</button>
+              </form>
+            </div>
+            
+          </div>
+        </article>
+          </section>
+        </main>
+    {% endblock %}

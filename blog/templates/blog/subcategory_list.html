@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Subcategories</title>
+</head>
+<body>
+    <h1>Subcategories</h1>
+    <ul>
+        {% for subcategory in subcategories %}
+        <li>{{ subcategory.name }} ({{ subcategory.category.name }}) - <a href="{% url 'update_subcategory' subcategory.id %}">Edit</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_subcategory' %}">Add Subcategory</a>
+    <a href="{% url 'post_list' %}">Back to Posts</a>
+</body>
+</html>

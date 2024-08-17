@@ -2,7 +2,15 @@
 {% load static %}
 
 {% block title %}Mágico Aprendizaje - Educación y Apoyo Escolar{% endblock %}
-
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
 {% block content %}
             <img class="img-fluid div-polaroid img-p" src="{% static 'AppMagico/img/imgmagicobq.jpeg' %}"
                 alt="Imagen Principal Magico Aprendizaje">

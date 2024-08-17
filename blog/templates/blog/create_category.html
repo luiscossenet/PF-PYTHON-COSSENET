@@ -1,0 +1,34 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Blog - Crear Categorias{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Crear Categoria</h2>
+            <article>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column">
+                        <form method="post">
+                            {% csrf_token %} {{ form.as_p }}
+                            <button type="submit">Save</button>
+                          </form>
+                          <a href="{% url 'RV_vcategory_list' %}">Back to Categories</a>
+                    </div>
+                </div>  
+</article>
+</section>
+</main>
+{% endblock %}

@@ -13,14 +13,16 @@
             <article>
                 {% if pFormEstado.errors %}
                 <p style="color: red;">Por favor corrija los errores debajo.</p>
-            {% endif %}
+                {% endif %}
             <!--/pages/test/ -->
-            <form action="" method="POST">{% csrf_token %}
-                <table>
-                    {{ form.as_p }}
-                </table>
-                <input type="submit" value="Enviar">
-            </form>
+                <div class="container text-center border">
+                    <form action="" method="POST">{% csrf_token %}
+                        <table>
+                            {{ form.as_p }}
+                        </table>
+                        <input type="submit" value="Enviar">
+                    </form>
+                </div>
             </article>
             <div class="container text-center alert alert-success" role="alert">
                 <p>Resultado</p>

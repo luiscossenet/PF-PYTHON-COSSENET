@@ -1,6 +1,10 @@
 from django.urls import path
-from AppMagico.views import *
-from AppMagico import views
+from .views import general_views, profile_views
+from .views.general_views import *
+from .views.profile_views import *
+
+
+# from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [
     # ruta de la pagina de inicio , funcion de la vista, nombre del objeto.
@@ -11,38 +15,66 @@ urlpatterns = [
     path("pages/clubtardesmagicas/", ClubTardesMagicas, name="ClubTardesMagicas"),
     path("pages/clubtareasdirigidas/", ClubTareasDirigidas, name="ClubTareasDirigidas"),
     path("pages/contactenos/", Contactenos, name="Contactenos"),
-    path("pages/estadosAdd/", estadosViewAdd, name="vEstadosAdd"),
-    path("pages/estadosSelect/", estadosViewSelect, name="vEstadosSelect"),
-    path("pages/estadosSelectAll/", estadosViewSelectAll, name="vEstadosSelectAll"),
-    path("pages/estadosUpdate/", estadosViewUpdate, name="vEstadosUpdate"),
+    path("pages/estadosAdd/", estadosViewAdd, name="RV_vEstadosAdd"),
+    path("pages/estadosSelect/", estadosViewSelect, name="RV_vEstadosSelect"),
+    path("pages/estadosSelectAll/", estadosViewSelectAll, name="RV_vEstadosSelectAll"),
+    path("pages/estadosUpdate/", estadosViewUpdate, name="RV_vEstadosUpdate"),
     path(
         "pages/estadosUpdateRow/<int:id>/",
         estadosViewUpdateRow,
-        name="vEstadosUpdateRow",
+        name="RV_vEstadosUpdateRow",
     ),
     path(
         "pages/estadosUpdateRowCommit/",
         estadosViewUpdateRowCommit,
-        name="vEstadosUpdateRowCommit",
+        name="RV_vEstadosUpdateRowCommit",
     ),
-    path("pages/estadosDelete/", estadosViewDelete, name="vEstadosDelete"),
+    path("pages/estadosDelete/", estadosViewDelete, name="RV_vEstadosDelete"),
     path(
         "pages/estadosDeleteRow/<int:id>/",
         estadosViewDeleteRow,
-        name="vEstadosDeleteRow",
+        name="RV_vEstadosDeleteRow",
     ),
     path(
         "pages/estadosDeleteRowCommit/",
         estadosViewDeleteRowCommit,
-        name="vEstadosDeleteRowCommit",
+        name="RV_vEstadosDeleteRowCommit",
     ),
     # rutas de clases basadas en vistas
-    path("pages/cargosSelect/", views.CargosListView.as_view(), name="vCargosSelect"),
-    path("pages/cargosAdd/", views.CargosCreateView.as_view(), name="vCargosAdd"),
+    path(
+        "pages/cargosSelect/",
+        CargosListView.as_view(),
+        name="RV_vCargosSelect",
+    ),
+    path("pages/cargosAdd/", CargosCreateView.as_view(), name="RV_vCargosAdd"),
+    path(
+        "pages/cargosUpdate/",
+        CargosUpdateView.as_view(),
+        name="RV_vCargosUpdate",
+    ),
+    path(
+        "pages/cargosUpdateRow/<int:pk>/update",
+        CargosUpdateRowView.as_view(),
+        name="RV_vCargosUpdateRow",
+    ),
+    path(
+        "pages/cargosDelete/",
+        CargosDeleteView.as_view(),
+        name="RV_vCargosDelete",
+    ),
+    path(
+        "pages/cargosDeleteRow/<int:pk>/delete",
+        CargosDeleteRowView.as_view(),
+        name="RV_vCargosDeleteRow",
+    ),
     # FIN rutas de clases basadas en vistas
-    path("pages/addTipoDocumento/", CrearTipoDocumento, name="CrearTipoDocumento"),
-    path("pages/selTipoDocumento/", SelectTipoDocumento, name="SelTipoDocumento"),
-    path("pages/addCargos/", CrearCargos, name="CrearCargos"),
-    path("pages/selCargos/", SelectCargos, name="SelCargos"),
-    path("pages/cursoFormul/", cursoFormulario, name="CursoFormulario"),
+    path("pages/addTipoDocumento/", CrearTipoDocumento, name="RV_vCrearTipoDocumento"),
+    path("pages/selTipoDocumento/", SelectTipoDocumento, name="RV_vSelTipoDocumento"),
+    path("test/", test, name="RV_vTest"),
+    path("profile/", profile_views.ProfileView.as_view(), name="profile"),
+    path(
+        "profile/function/",
+        profile_views.profile_function_view,
+        name="profile_function",
+    ),
 ]

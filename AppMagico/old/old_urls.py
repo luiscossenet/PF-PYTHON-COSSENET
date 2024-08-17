@@ -1,5 +1,5 @@
 from django.urls import path
-from AppMagico.views import *
+from MagicoBq.AppMagico.views.general_views import *
 
 urlpatterns = [
     # ruta de la pagina de inicio , funcion de la vista, nombre del objeto

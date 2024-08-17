@@ -1,0 +1,32 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Borrar Cargos Detalles{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Borrar Estados de Registros</h2>
+            <article>
+                {% if form.errors %}
+                <p style="color: red;">Por favor corrija los errores debajo.</p>
+            {% endif %}
+            <!--/pages/test/ -->
+            <form action="" method="POST">{% csrf_token %}
+                <div class="danger">  <p>Desea Borrar el cargo con ID: {{ cargos.id }} -
+                            Valor: {{ cargos.nombre }}</p>
+                </div>
+                <div >
+                    <input type="submit" value="Enviar" class="btn btn-danger">
+                    <a href="{% url 'RV_vCargosDelete' %}" class="btn btn-primary">Regresar</a>
+                </div>
+            </form>
+            </article>
+            
+            
+        </section>
+    </main>
+{% endblock %}

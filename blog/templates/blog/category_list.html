@@ -1,0 +1,39 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Blog - Categorias{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Categorias</h2>
+            <article>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column">
+                        <ul>
+                            {% for category in categories %}
+                            <li>
+                                {{ category.id }} - {{ category.name }}
+                                <a href="{% url 'RV_vcategory_edit' category.id %}">Edit</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <a href="{% url 'RV_vcreate_category' %}">Add Category</a>
+                        <a href="{% url 'RV_vpost_list' %}">Back to Posts</a>
+                    </div>
+                </div>  
+</article>
+</section>
+</main>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Actualizar Estados Detalle{% endblock %}
+
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Actualizar Estados de Registros C</h2>
+            <article>
+                {% if form.errors %}
+                <p style="color: red;">Por favor corrija los errores debajo.</p>
+            {% endif %}
+            <!--/pages/test/ -->
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                    {{ form.as_p }}
+                </table>
+                <input type="submit" value="Enviar">
+            </form>
+            </article>
+            
+            
+        </section>
+    </main>
+{% endblock %}
+

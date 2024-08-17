@@ -1,0 +1,37 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Login{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Login</h2>
+            <article>
+              <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                  {% if msg_login %}
+                    <p class ="fs-5 fw-bold danger">{{ msg_login }}</p>
+                  {% endif %}
+               <form action="" method="POST">
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit">Inciar sesion</button>
+              </form>
+            </div>
+            
+          </div>
+        </article>
+          </section>
+        </main>
+    {% endblock %}
