@@ -106,35 +106,21 @@ def update_category(request, category_id):
     return render(request, "blog/update_category.html", {"form": form})
 
 
-"""
-def category_edit(request, pk):
-    category = get_object_or_404(Category, pk=pk)
-    if request.method == "POST":
-        form = CategoryForm(request.POST, instance=category)
-        if form.is_valid():
-            form.save()
-            return redirect("category_list")
-    else:
-        form = CategoryForm(instance=category)
-    return render(request, "category_form.html", {"form": form})
-"""
-
-
 def category_delete(request, pk):
     category = get_object_or_404(Category, pk=pk)
     if request.method == "POST":
         category.delete()
         return redirect("category_list")
-    return render(request, "category_confirm_delete.html", {"category": category})
+    return render(request, "blog/delete_category.html", {"category": category})
 
 
+"""
 def subcategory_list(request):
     subcategories = SubCategory.objects.all()
-    return render(
-        request, "blog/subcategory_list.html", {"subcategories": subcategories}
-    )
+    return render(request, "blog/category_list.html", {"subcategories": subcategories})
+"""
 
-
+"""
 def create_subcategory(request):
     if request.method == "POST":
         form = SubcategoryForm(request.POST)
@@ -146,22 +132,27 @@ def create_subcategory(request):
     return render(request, "blog/create_subcategory.html", {"form": form})
 
 
+
 def update_subcategory(request, subcategory_id):
     subcategory = get_object_or_404(SubCategory, id=subcategory_id)
     if request.method == "POST":
         form = SubcategoryForm(request.POST, instance=subcategory)
         if form.is_valid():
             form.save()
-            return redirect("subcategory_list")
+            return redirect("RV_vsubcategory_list")
     else:
         form = SubcategoryForm(instance=subcategory)
     return render(request, "blog/update_subcategory.html", {"form": form})
+
+"""
 
 
 # Subcategorías
 def subcategory_list(request):
     subcategories = SubCategory.objects.all()
-    return render(request, "subcategory_list.html", {"subcategories": subcategories})
+    return render(
+        request, "blog/subcategory_list.html", {"subcategories": subcategories}
+    )
 
 
 def subcategory_create(request):
@@ -169,10 +160,10 @@ def subcategory_create(request):
         form = SubcategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("subcategory_list")
+            return redirect("RV_vsubcategory_list")
     else:
         form = SubcategoryForm()
-    return render(request, "subcategory_form.html", {"form": form})
+    return render(request, "blog/create_subcategory.html", {"form": form})
 
 
 def subcategory_edit(request, pk):
@@ -181,10 +172,10 @@ def subcategory_edit(request, pk):
         form = SubcategoryForm(request.POST, instance=subcategory)
         if form.is_valid():
             form.save()
-            return redirect("subcategory_list")
+            return redirect("RV_vsubcategory_list")
     else:
         form = SubcategoryForm(instance=subcategory)
-    return render(request, "subcategory_form.html", {"form": form})
+    return render(request, "blog/update_subcategory.html", {"form": form})
 
 
 def subcategory_delete(request, pk):
@@ -192,6 +183,4 @@ def subcategory_delete(request, pk):
     if request.method == "POST":
         subcategory.delete()
         return redirect("subcategory_list")
-    return render(
-        request, "subcategory_confirm_delete.html", {"subcategory": subcategory}
-    )
+    return render(request, "blog/delete_subcategory.html", {"subcategory": subcategory})

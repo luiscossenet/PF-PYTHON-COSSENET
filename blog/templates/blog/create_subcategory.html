@@ -1,14 +1,34 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Create Subcategory</title>
-  </head>
-  <body>
-    <h1>Create Subcategory</h1>
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Blog - Crear Subcategorias{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Crear Subcategorias</h2>
+            <article>
+              <div class="d-flex justify-content-center">
+                  <div class="d-flex flex-column">            
     <form method="post">
       {% csrf_token %} {{ form.as_p }}
       <button type="submit">Save</button>
     </form>
-    <a href="{% url 'subcategory_list' %}">Back to Subcategories</a>
-  </body>
-</html>
+    <a href="{% url 'RV_vsubcategory_list' %}">Back to Subcategorias</a>
+  </div>
+</div>  
+</article>
+</section>
+</main>
+{% endblock %}

@@ -159,14 +159,23 @@
                           <li class="dropdown-submenu">
                             <a class="dropdown-item" href="#">Blog</a>
                             <ul class="dropdown-menu">
-                              <!-- Subopción 1-1 -->
+                              <!-- Subopción 1-Categories -->
                               <li class="dropdown-submenu">
                                 <a class="dropdown-item" href="#">Categorias</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{% url 'RV_vcreate_category' %}">Crear</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'RV_vcategory_list' %}">Listar Estados</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vcategory_list' %}">Listar</a></li>
                                 </ul>
                               </li>
+                              <!-- Subopción 1-Subcategories -->
+                              <li class="dropdown-submenu">
+                                <a class="dropdown-item" href="#">Sub-Categorias</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'RV_vsubcategory_create' %}">Crear</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'RV_vsubcategory_list' %}">Listar</a></li>
+                                </ul>
+                              </li>
+                              <!-- Subopción 1-2 -->                              
                               <!-- Subopción 1-2 -->
                               <li class="dropdown-submenu">
                                 <a class="dropdown-item" href="#">Empresa</a>

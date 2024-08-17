@@ -26,6 +26,7 @@
                             <li>
                                 {{ category.id }} - {{ category.name }}
                                 <a href="{% url 'RV_vcategory_edit' category.id %}">Edit</a>
+                                <a href="{% url 'RV_vcategory_delete' category.id %}">Eliminar</a>
                             </li>
                             {% endfor %}
                         </ul>

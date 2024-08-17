@@ -62,7 +62,11 @@ LOGIN_REDIRECT_URL = "incio"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "AppMagico/templates/AppMagico/"],
+        "DIRS": [
+            BASE_DIR / "AppMagico/templates/AppMagico/",
+            BASE_DIR / "blog/templates/blog/",
+            BASE_DIR / "users/templates/users/",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

@@ -1,7 +1,7 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
 
-{% block title %}Mágico Aprendizaje - Blog - SubCategorias{% endblock %}
+{% block title %}Mágico Aprendizaje - Blog - Eliminar Categoria{% endblock %}
 {% block messages %}
     {% if messages %}
         <ul class="messages">
@@ -17,21 +17,16 @@
            <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
                 alt="Imagen Principal Magico Aprendizaje">
             -->    
-            <h2>SubCategorias</h2>
+            <h2>Eliminar Categoria</h2>
             <article>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex flex-column">
-    <ul>
-      {% for subcategory in subcategories %}
-      <li>
-        {{ subcategory.name }} ({{ subcategory.category.name }}) -
-        <a href="{% url 'RV_vsubcategory_edit' subcategory.id %}">Editar</a>
-        <a href="{% url 'RV_vsubcategory_delete' subcategory.id %}">Eliminar</a>
-      </li>
-      {% endfor %}
-    </ul>
-    <a href="{% url 'RV_vsubcategory_create' %}">Adicionar Subcategoria</a>
-    <a href="{% url 'RV_vpost_list' %}">Back to Posts</a>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit">Yes, delete</button>
+                        </form>
+                        <a href="{% url 'RV_vcategory_list' %}">Cancel</a>
+    <a href="{% url 'RV_vcategory_list' %}">Back to Categorias</a>
 </div>
 </div>  
 </article>
