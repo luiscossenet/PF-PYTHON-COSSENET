@@ -1,0 +1,36 @@
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../fonts/NotoSans-VariableFont_wdth.ttf");
+    font-weight: 400;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/// //////////////////////////////////////
+/// 
+/// 1. Patron de colores
+/// //////////////////////////////////////
+$principal: black;
+$primary: $principal;
+$danger: red;
+$font-family: noto sans;
+//Variables Barra de Progreso
+$background__bar: #9994;
+$background__bar__color: #7DBD35;
+$background__bar__shadow: 0 0 5px #73B426;
+$background__menu_hover: #73B426;
+//variables de bootstrap 5
+$dropdown-link-hover-color: white;
+$dropdown-link-hover-bg: #73B426;
+//////////////////////
+//Variables Contadores
+$display__widgetconta__display: inline-block;
+//Variables de la barra de navegacion
+// Redefine las variables para btn-primary
+$background__button: #7DBD35;
+$background__button_hover: #73B426;

@@ -70,11 +70,11 @@ urlpatterns = [
     # FIN rutas de clases basadas en vistas
     path("pages/addTipoDocumento/", CrearTipoDocumento, name="RV_vCrearTipoDocumento"),
     path("pages/selTipoDocumento/", SelectTipoDocumento, name="RV_vSelTipoDocumento"),
-    path("test/", test, name="RV_vTest"),
-    path("profile/", profile_views.ProfileView.as_view(), name="profile"),
+    #path("test/", test, name="RV_vTest"),
+    path("profile/", profile_views.ProfileView.as_view(), name="RV_vprofile"),
     path(
         "profile/function/",
         profile_views.profile_function_view,
-        name="profile_function",
+        name="RV_profile_function",
     ),
 ]

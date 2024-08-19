@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404
+from AppMagico.views.general_views import custom_404_view, custom_403_view, custom_500_view, custom_400_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,5 +31,10 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
 ]
 
+handler404 = 'AppMagico.views.custom_404_view'  # Asegúrate de usar la ruta correcta a tu vista
+handler403 = 'AppMagico.views.custom_403_view'
+handler500 = 'AppMagico.views.custom_500_view'
+handler400 = 'AppMagico.views.custom_400_view'
+    
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

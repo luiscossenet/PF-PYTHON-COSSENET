@@ -25,8 +25,13 @@ SECRET_KEY = "django-insecure-l2&j3$9nkyo4)66z(41=%wr(=w48=&2fl%@8w1=+t6jj+90m49
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+# Modificado para permitir acceso desde localhost
+# ALLOWED_HOSTS = ['tudominio.com', 'localhost']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
+
 
 
 # Application definition
@@ -41,7 +46,15 @@ INSTALLED_APPS = [
     "AppMagico",
     "users",
     "blog",
+    # External apps
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
+
+# External apps
+# Configuración de Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -53,6 +66,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # Otros middlewares
     "AppMagico.middleware.LoginRequiredMiddleware",
+    'users.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = "MagicoBq.urls"
@@ -66,6 +80,19 @@ MEDIA_URL = "/media/"
 
 # El directorio donde se almacenan los archivos multimedia
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# La URL base para servir archivos estáticos
+#STATIC_URL = "/static/" 
+
+# Tiempo en segundos para que la sesión expire por inactividad
+SESSION_COOKIE_AGE = 7200 # 30 minutos = 1800 segundos
+
+# Restablecer el tiempo de expiración de la sesión cada vez que se interactúa con el servidor
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Hacer que la sesión expire cuando el navegador se cierre
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 #####################FIN IMPLEMENTACION#####################
 TEMPLATES = [
@@ -139,6 +166,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "AppMagico/static/"
+#STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATICFILES_DIRS = [
+    BASE_DIR / "AppMagico/static"
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

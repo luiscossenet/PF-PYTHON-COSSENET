@@ -7,14 +7,41 @@ from django.contrib import messages
 import socket
 from .models import UserProfile
 from .utils import UserActivity
+from .forms import UserProfileForm
+from django.contrib.auth.models import User
+from django.http import Http404
 
 def profile(request, username):
-    user = get_object_or_404(User, username=username)
-    profile = get_object_or_404(UserProfile, user=user)
-    return render(request, 'profile.html', {'profile': profile})
+    if username == request.user.username:
+        if request.method == "POST":
+            print(username)
+            print(request.user.username)
+            user = get_object_or_404(User, username=username)
+            print("Linea 17:",username, user)
+            #profile = get_object_or_404(UserProfile, user=user)
+            #print("Linea 19:",profile)
+            try:
+                profile = UserProfile.objects.get(user=user)
+            except UserProfile.DoesNotExist:
+                messages.error(request, "Usuario o perfil no encontrado. Proceder a cargar la imagen de perfil.")
+                profile = None
+            
+            if profile and not profile.profile_picture:
+                messages.error(request, "Usuario o perfil no encontrado. Proceder a cargar la imagen de perfil.")
+        else:
+            return render(request, 'AppMagico/index.html')
+    else:
+            raise Http404("No tienes permiso para ver este perfil.")
+                
+    
+    return render(request, 'users/profile.html', {'profile': profile})    
 
 def edit_profile(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
+    print(request.user.username)
+    user = request.user.username
+    print("Linea 35:",user)
+    #profile = get_object_or_404(UserProfile, user=request.user)
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
@@ -29,11 +56,11 @@ def edit_profile(request):
             profile.updated_browser = activity_data['browser']
             if 'profile_picture' in request.FILES:
                 profile.profile_picture_original_name = request.FILES['profile_picture'].name
-            profile.save()
-            return redirect('profile', username=request.user.username)
+                profile.save()
+            return redirect('RV_vProfile', username=request.user.username)
     else:
-        form = UserProfileForm(instance=profile)
-    return render(request, 'edit_profile.html', {'form': form})
+        form = UserProfileForm(instance=request.user.userprofile)
+    return render(request, 'users/edit_profile.html', {'form': form})
 
 
 # Create your views here.

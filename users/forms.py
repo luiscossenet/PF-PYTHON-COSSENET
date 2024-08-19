@@ -2,11 +2,27 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import UserProfile
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['user', 'bio', 'profile_picture']
+        fields = ['bio', 'profile_picture','alternative_email', 'telephone' , 'cellphone'  ,'whatsapp','linkedin', 
+                  'youtube' ,'instagram' ,'github', 'facebook', 'twitter','tiktok']
+
+def edit_profile(request):
+   
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=request.user.userprofile)
+    
+    return render(request, 'users/edit_profile.html', {'form': form})        
 
 
 class UserRegisterForm(forms.ModelForm):

@@ -1,5 +1,6 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Mágico Aprendizaje - Blog - Detalle Post{% endblock %}
 {% block messages %}
@@ -23,7 +24,8 @@
                 <div class="d-flex flex-column">
                 <form method="post" enctype="multipart/form-data">
                   {% csrf_token %}
-                  {{ form.as_p }}   
+                  {{ form|crispy }}
+                  {{ image_form|crispy }}   
                     <button type="submit">Save changes</button>
                 </form>
             </div>

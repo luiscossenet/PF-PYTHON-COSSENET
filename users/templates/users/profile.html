@@ -1,0 +1,102 @@
+{% extends "AppMagico/base.html" %}
+{% load static %}
+
+{% block title %}Mágico Aprendizaje - Perfil{% endblock %}
+{% block messages %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} "{% endif %}>{{ message }}</div>
+            {% endfor %}
+        </ul>
+{% endif %}
+{% endblock %}
+{% block content %}
+    <!-- main static-->
+        <!-- h1 -->    
+           <!--- <img class="img-fluid div-polaroidform img-p" src="{% static 'AppMagico/img/magicobq.png' %}"
+                alt="Imagen Principal Magico Aprendizaje">
+            -->    
+            <h2>Perfil</h2>
+            <article>
+              <div class="d-flex justify-content-center">
+                <div class="d-flex flex-column">
+                {% if profile %}
+                    <h3>{{ profile.user.username }}</h1>
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" style="width:150px;height:150px;">
+                    {% else %}
+                        <img src="{% static 'img/profile/profile.png' %}" alt="Default Profile Picture" style="width:150px;height:150px;">
+                    {% endif %}
+                    <!-- Add other profile fields as needed -->
+                {% else %}
+                    <p>Usuario o perfil no encontrado. Proceder a cargar la imagen de perfil.</p>
+                {% endif %}
+                    <p>{{ profile.bio }}</p>
+                    <p>LinkedIn:
+                        {% if profile.linkedin %}
+                             <a href="{{ profile.linkedin }}">{{ profile.linkedin }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.linkedin }}</a></p>
+                        {% endif %}
+                    <p>GitHub: 
+                        {% if profile.github %}
+                             <a href="{{ profile.github }}">{{ profile.github }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.github }}</a></p>
+                        {% endif %} 
+                    <p>Facebook: 
+                        {% if profile.facebook %}
+                             <a href="{{ profile.facebook }}">{{ profile.facebook }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.facebook }}</a></p>
+                        {% endif %}
+                    <p>Twitter: 
+                        {% if profile.twitter %}
+                             <a href="{{ profile.twitter }}">{{ profile.twitter }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.twitter }}</a></p>
+                        {% endif %}
+                    <p>Instagram: 
+                        {% if profile.instagram %}
+                             <a href="{{ profile.instagram }}">{{ profile.instagram }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.instagram }}</a></p>
+                        {% endif %}
+                    <p>Telephone: 
+                        {% if profile.telephone %}
+                             <a href="{{ profile.telephone }}">{{ profile.telephone }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.telephone }}</a></p>
+                        {% endif %}
+                    <p>Cellphone: 
+                        {% if profile.cellphone %}
+                             <a href="{{ profile.cellphone }}">{{ profile.cellphone }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.cellphone }}</a></p>
+                        {% endif %}
+                    <p>WhatsApp: 
+                        {% if profile.whatsapp %}
+                             <a href="{{ profile.whatsapp }}">{{ profile.whatsapp }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.whatsapp }}</a></p>
+                        {% endif %}
+                    <p>TikTok: 
+                        {% if profile.tiktok %}
+                             <a href="{{ profile.tiktok }}">{{ profile.tiktok }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.tiktok }}</a></p>
+                        {% endif %}
+                    <p>YouTube: 
+                        {% if profile.youtube %}
+                             <a href="{{ profile.youtube }}">{{ profile.youtube }}</a></p>
+                        {% else %}
+                            <a href="#">{{ profile.youtube }}</a></p>
+                        {% endif %}
+                    <a href="{% url 'RV_vEditProfile' %}">Editar Perfil</a>
+            </div>
+        </div>
+      </article>
+        </section>
+      </main>
+  {% endblock %}

@@ -174,46 +174,27 @@
                                     <li><a class="dropdown-item" href="{% url 'RV_vpost_list' %}">Listar</a></li>
                                 </ul>
                               </li>                              
-                              <!-- Subopción 1-2 -->                              
-                              <!-- Subopción 1-2 -->
-                              <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="#">Empresa</a>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                    <a class="dropdown-item" href="#">Subopción 1-2-1</a>
-                                  </li>
-                                  <li>
-                                    <a class="dropdown-item" href="#">Subopción 1-2-2</a>
-                                  </li>
-                                  <li>
-                                    <a class="dropdown-item" href="#">Subopción 1-2-3</a>
-                                  </li>
-                                </ul>
-                              </li>
-                              <!-- Subopción 1-3 -->
-                              <li class="dropdown-submenu"><a class="dropdown-item" href="#">Tipo Documento</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/pages/addTipoDocumento/">Crear Tipo Documento</a></li>
-                                    <li><a class="dropdown-item" href="/pages/selTipoDocumento/">Consultar Tipo Documento</a></li>                                    
-                                </ul>
-                              </li>   
-                              <!-- Subopción 1-4 -->                                                         
-                              <li class="dropdown-submenu">
-                                <a class="dropdown-item" href="#">Cargos</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosAdd' %}">Crear Cargos</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosSelect' %}">Consultar Cargos</a></li>  
-                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosUpdate' %}">Actualizar Cargos</a></li>                                 
-                                    <li><a class="dropdown-item" href="{% url 'RV_vCargosDelete' %}">Borrar Cargos</a></li>
-                                </ul>
-                              </li>
                             </ul>
                           </li>                          
                         </ul>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">Hola, {{ user.username }}</a>
-                      </li>  
+                        <form method="POST" action="{% url 'RV_vProfile' user.username %}">
+                          {% csrf_token %}
+                          <input class="btn btn-primary" type="submit" value="Hola, {{ user.username }}">
+                      </form>
+                      </li>
+                      <li>
+                        <div class="avatar-container">
+                              {% if profile_picture_url %}
+                                  <img src="{{ profile_picture_url }}" alt="Avatar" class="avatar" style="width:50px;height:30px;">
+                              {% elif profile.profile_picture %}
+                                  <img src="{{ profile.profile_picture.url }}" alt="Avatar" class="avatar" style="width:50px;height:30px;">
+                              {% else %}
+                                  <img src="{% static 'AppMagico/img/profile/profile.png' %}" alt="Default Avatar" class="avatar" style="width:50px;height:30px;">
+                              {% endif %}
+                      </div>
+                      </li>                        
                       <li class="nav-item">
                         <form method="POST" action="{% url 'Logout' %}">
                           {% csrf_token %}

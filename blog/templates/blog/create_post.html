@@ -1,5 +1,6 @@
 {% extends "AppMagico/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Mágico Aprendizaje - Blog - Crear Post{% endblock %}
 {% block messages %}
@@ -21,14 +22,16 @@
             <article>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex flex-column">
-   <form method="post" enctype="multipart/form-data">
-      {% csrf_token %} {{ post_form.as_p }} {{ image_form.as_p }}
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-</div>  
-</article>
-</section>
-</main>
+                        <form method="post" enctype="multipart/form-data" >
+                            {% csrf_token %}
+                                {{ post_form|crispy }}
+                                {{ image_form|crispy }}
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>  
+            </article>
+        </section>
+    </main>
 {% endblock %}
 

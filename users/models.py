@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 def user_directory_path(instance, filename):
     ext = filename.split(".")[-1]
     filename = f"{uuid.uuid4()}.{ext}"
-    return f"user_{instance.user.id}/{filename}"
+    return f"users/{instance.user.username}/{filename}"
 
 
 class UserProfile(models.Model):
@@ -21,7 +21,13 @@ class UserProfile(models.Model):
     github = models.URLField(blank=True, null=True)
     facebook = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
     alternative_email = models.EmailField(blank=True, null=True)
+    telephone = models.CharField(max_length=15, blank=True, null=True)
+    cellphone = models.CharField(max_length=15, blank=True, null=True)
+    whatsapp = models.CharField(max_length=15, blank=True, null=True)
+    tiktok = models.URLField(blank=True, null=True)
+    youtube = models.URLField(blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(
         User,
@@ -36,6 +42,8 @@ class UserProfile(models.Model):
     updated_os = models.CharField(max_length=255, null=True, blank=True)
     updated_browser = models.CharField(max_length=255, null=True, blank=True)
 
-    def __str__(self):
-        return self.user.username
+    def save(self, *args, **kwargs):
+        if not self.profile_picture:
+            self.profile_picture = 'profile/default/profile.png'
+        super().save(*args, **kwargs)
 

@@ -29,7 +29,6 @@
     <div>
       {% for image in post.images.all %}
       <img src="{{ image.image.url }}" alt="Image for {{ post.title }}" />
-      <p>{{ image.image.url }}</p>
       {% endfor %}
     </div>
     {% endif %}
