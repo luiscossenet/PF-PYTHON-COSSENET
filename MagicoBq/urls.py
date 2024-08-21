@@ -36,5 +36,7 @@ handler403 = 'AppMagico.views.custom_403_view'
 handler500 = 'AppMagico.views.custom_500_view'
 handler400 = 'AppMagico.views.custom_400_view'
     
+# Añadir rutas para archivos estáticos y multimedia
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

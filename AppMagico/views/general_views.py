@@ -38,9 +38,13 @@ def custom_400_view(request, exception):
     return redirect('inicio')  # 'index' es el nombre de la URL para la vista del índice
 
 def inicio(request):
-    profile = UserProfile.objects.get(user=request.user)
-    print(profile.profile_picture.url)
-    return render(request, "index.html", {'profile_picture_url': profile.profile_picture.url})
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        #print(profile.profile_picture.url)
+        profile_url = profile.profile_picture.url
+    else:
+        profile_url = None
+    return render(request, "index.html", {'profile_picture_url': profile_url})
     #return render(request, "index.html")
 
 

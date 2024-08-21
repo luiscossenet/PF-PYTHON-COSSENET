@@ -12,8 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde el archivo .env
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+#BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -21,16 +26,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-l2&j3$9nkyo4)66z(41=%wr(=w48=&2fl%@8w1=+t6jj+90m49"
+#SECRET_KEY = "django-insecure-l2&j3$9nkyo4)66z(41=%wr(=w48=&2fl%@8w1=+t6jj+90m49"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 #DEBUG = False
 
 #ALLOWED_HOSTS = []
 # Modificado para permitir acceso desde localhost
 # ALLOWED_HOSTS = ['tudominio.com', 'localhost']
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+#ALLOWED_HOSTS = ['localhost','127.0.0.1','172.0.0.1']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 
 
@@ -165,9 +172,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "AppMagico/static/"
+STATIC_URL = "/static/"
 #STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+#STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = "/BqMagico/MagicoBq/staticfiles/"
 STATICFILES_DIRS = [
     BASE_DIR / "AppMagico/static"
 ]
