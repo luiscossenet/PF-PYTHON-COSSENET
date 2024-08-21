@@ -65,16 +65,15 @@
                           Servicios
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="estadosDropdown">
-                          <li><a class="dropdown-item" href="/pages/clubdelectura/">Club de Lectura</a></li>
-                          <li><a class="dropdown-item" href="/pages/clubdelectura/">Club de Lectura</a></li>
-                          <li><a class="dropdown-item" href="/pages/clubderefuerzos/">Club de Refuerzos</a></li>
-                          <li><a class="dropdown-item" href="/pages/clubtardesmagicas">Club Tardes Mágicas</a></li>
-                          <li><a class="dropdown-item" href="/pages/clubtareasdirigidas">Club Tareas Dirigidas</a></li>
-                          <li><a class="dropdown-item" href="/pages/clubtallerintegrado">Club Taller Integrado</a></li>                          
+                          <li><a class="dropdown-item" href="{% url 'ClubDeLectura' %}">Club de Lectura</a></li>
+                          <li><a class="dropdown-item" href="{% url 'ClubDeRefuerzos' %}">Club de Refuerzos</a></li>
+                          <li><a class="dropdown-item" href="{% url 'ClubTardesMagicas' %}">Club Tardes Mágicas</a></li>
+                          <li><a class="dropdown-item" href="{% url 'ClubTareasDirigidas' %}">Club Tareas Dirigidas</a></li>
+                          <li><a class="dropdown-item" href="{% url 'ClubTallerIntegrado' %}">Club Taller Integrado</a></li>                          
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/pages/contactenos" target="_blank">Contactenos</a>
+                        <a class="nav-link" href="{% url 'Contactenos' %}" target="_blank">Contactenos</a>
                     </li> 
                     {% if not user.is_authenticated %}
                     <li class="nav-item">
