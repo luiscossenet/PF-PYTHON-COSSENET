@@ -117,9 +117,12 @@ def register(request):
     if request.method == "POST":
         # form = UserCreationForm(request.POST)
         form = UserRegisterForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and form.cleaned_data.get("password1") == form.cleaned_data.get("password2"):
             username = form.cleaned_data.get("username")
-            form.save()
+            password = form.cleaned_data.get("password1")
+            user = form.save()
+            user.set_password(password)
+            user.save()
             # usuario = form.cleaned_data.get("username")
             # *Prueba2024*
             # print(f"\nUsuario {username} Creado\n")

@@ -62,13 +62,16 @@ def delete_post(request, post_id):
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    if request.user.is_superuser:
+        posts = Post.objects.all()
+    else:
+        posts = Post.objects.filter(created_by=request.user)
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    if request.method == "POST":
+    if (request.method == "POST" and request.user == post.created_by) or  (request.method == "POST" and request.user.is_superuser):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -76,7 +79,7 @@ def post_detail(request, post_id):
             comment.save()
             return redirect("RV_vpost_detail", post_id=post.id)
     else:
-        comment_form = CommentForm()
+        redirect("RV_vpost_list")
     return render(
         request, "blog/post_detail.html", {"post": post, "comment_form": comment_form}
     )
