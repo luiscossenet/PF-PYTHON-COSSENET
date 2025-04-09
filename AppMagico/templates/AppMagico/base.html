@@ -16,14 +16,14 @@
     <meta property="og:description"
         content="Ofrecemos servicios de tareas dirigidas, club de lectura y club de refuerzo para niños y adolescentes.">
     <meta property="og:image" content="URL_DE_LA_IMAGEN_DE_PREVISUALIZACION">
-    <meta property="og:url" content="https://luiscossenet.github.io/PF-COSSENET/">
+    <meta property="og:url" content="https://www.magicoaprendizaje.com">
     <meta property="og:type" content="website">
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mágico Aprendizaje - Educación y Apoyo Escolar">
     <meta name="twitter:description"
         content="Ofrecemos servicios de tareas dirigidas, club de lectura y club de refuerzo para niños y adolescentes.">
-    <meta name="twitter:image" content="https://luiscossenet.github.io/PF-COSSENET/img/imgmagicobq.jpeg">
+    <meta name="twitter:image" content="{% static 'AppMagico/img/imgmagicobq.jpeg' %}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'AppMagico/img/favicon.ico' %}" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'AppMagico/img/favicon-32x32.png' %}">
@@ -256,7 +256,14 @@
             </a>
         </div>
         <div class="line">
-            <p>&copy; 2024 Mágico Aprendizaje. Todos los derechos reservados.</p>
+          <a class="aicom_web web-link" href="https://maps.app.goo.gl/mNTKe5h5XvxojZfd8" target="_blank">
+              <span>CL 85 CR 70 48-Barranquilla, Colombia</span>
+          </a>
+      </div>        
+        <div class="line">
+            <p>
+              <strong>Mágico Aprendizaje</strong> &copy; <script>document.write(new Date().getFullYear())</script> . Todos los derechos reservados.
+            </p>
         </div>
     </footer>
     <script src="{% static 'AppMagico/js/popper.min.js' %}"></script>

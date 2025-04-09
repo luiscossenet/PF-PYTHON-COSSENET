@@ -19,22 +19,36 @@ from django.contrib import messages
 
 # Create your views here.
 def custom_404_view(request, exception):
-    messages.error(request, "La página que estás buscando no existe. Has sido redirigido al inicio.")
-    return redirect('inicio')  # 'index' es el nombre de la URL para la vista del índice
+    messages.error(request, "La página que estás buscando no existe. Has sido "
+                   "redirigido al inicio.")
+    return redirect('inicio')  
+    # 'index' es el nombre de la URL para la vista del índice
 
 def custom_403_view(request, exception):
     #return render(request, '403.html', status=403)
-    messages.error(request, "La página que estás intentando acceder, es una página o recurso para el cual no tienes los permisos necesarios. Has sido redirigido al inicio.")
-    return redirect('inicio')  # 'index' es el nombre de la URL para la vista del índice
+    messages.error(
+        request, 
+        "La página que estás intentando acceder, es una "
+        "página o recurso para el cual no tienes los permisos necesarios. Has "
+        "sido redirigido al inicio.")
+    return redirect('inicio')
+    # 'index' es el nombre de la URL para la vista del índice
 
 def custom_500_view(request):
     #return render(request, '500.html', status=500)
-    messages.error(request, "La página que estás intentando acceder, presenta codigo #500. Has sido redirigido al inicio.")
+    messages.error(
+        request,
+        "La página que estás intentando acceder, presenta codigo #500. "
+        "Has sido redirigido al inicio."
+    )
     return redirect('inicio')  # 'index' es el nombre de la URL para la vista del índice
 
 def custom_400_view(request, exception):
     #return render(request, '400.html', status=400)
-    messages.error(request, "La página que estás intentando acceder, presenta codigo #400 *Solicitud incorrecta*, revisa los datos ingresados. Has sido redirigido al inicio.")
+    messages.error(
+        request, 
+        "La página que estás intentando acceder, presenta "
+        "codigo #400 *Solicitud incorrecta*, revisa los datos ingresados. Has sido redirigido al inicio.")
     return redirect('inicio')  # 'index' es el nombre de la URL para la vista del índice
 
 def inicio(request):

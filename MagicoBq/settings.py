@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -26,21 +26,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = "django-insecure-l2&j3$9nkyo4)66z(41=%wr(=w48=&2fl%@8w1=+t6jj+90m49"
+# SECRET_KEY =
+# "django-insecure-l2&j3$9nkyo4)66z(41=%wr
+# (=w48=&2fl%@8w1=+t6jj+90m49"
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-#DEBUG = False
+# DEBUG = False
 
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 # Modificado para permitir acceso desde localhost
 # ALLOWED_HOSTS = ['tudominio.com', 'localhost']
-#ALLOWED_HOSTS = ['localhost','127.0.0.1','172.0.0.1']
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
-
-
-
+# ALLOWED_HOSTS = ['localhost','127.0.0.1','172.0.0.1']
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
+if os.getenv('DJANGO_ENV') == 'production':
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS_PROD').split(',')
+elif os.getenv('DJANGO_ENV') == 'development':
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS_DEV').split(',')
 # Application definition
 
 INSTALLED_APPS = [
@@ -78,7 +82,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "MagicoBq.urls"
 
-#####################IMPLEMENTADO#####################
+# ####################IMPLEMENTADO#####################
 LOGIN_URL = "Login"
 LOGIN_REDIRECT_URL = "incio"
 
@@ -89,19 +93,23 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # La URL base para servir archivos estáticos
-#STATIC_URL = "/static/" 
+# STATIC_URL = "/static/"
 
 # Tiempo en segundos para que la sesión expire por inactividad
-SESSION_COOKIE_AGE = 7200 # 30 minutos = 1800 segundos
+SESSION_COOKIE_AGE = 7200  # 30 minutos = 1800 segundos
 
-# Restablecer el tiempo de expiración de la sesión cada vez que se interactúa con el servidor
+# Restablecer el tiempo de expiración de la sesión cada vez
+# que se interactúa con el servidor
 SESSION_SAVE_EVERY_REQUEST = True
 
 # Hacer que la sesión expire cuando el navegador se cierre
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+# DJANGO 30/08/2024
+CSRF_TRUSTED_ORIGINS = ['https://www.magicoaprendizaje.com',
+                        'https://magicoaprendizaje.com']
 
-#####################FIN IMPLEMENTACION#####################
+# ####################FIN IMPLEMENTACION#####################
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -141,16 +149,22 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation."
+            "UserAttributeSimilarityValidator"
+        ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation."
+                "CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation."
+                "NumericPasswordValidator",
     },
 ]
 
@@ -175,8 +189,8 @@ USE_TZ = True
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 MB
 
 STATIC_URL = "/static/"
-#STATIC_ROOT = BASE_DIR / "staticfiles"
-#STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_ROOT = "/BqMagico/MagicoBq/staticfiles/"
 STATICFILES_DIRS = [
     BASE_DIR / "AppMagico/static"
