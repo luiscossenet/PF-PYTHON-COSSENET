@@ -106,8 +106,10 @@ SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # DJANGO 30/08/2024
-CSRF_TRUSTED_ORIGINS = ['https://www.magicoaprendizaje.com',
-                        'https://magicoaprendizaje.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.magicoaprendizaje.com',
+    'https://magicoaprendizaje.com'
+]
 
 # ####################FIN IMPLEMENTACION#####################
 TEMPLATES = [

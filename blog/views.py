@@ -69,21 +69,28 @@ def post_list(request):
     return render(request, "blog/post_list.html", {"posts": posts})
 
 
+
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    if (request.method == "POST" and request.user == post.created_by) or  (request.method == "POST" and request.user.is_superuser):
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.post = post
-            comment.save()
-            return redirect("RV_vpost_detail", post_id=post.id)
-    else:
-        redirect("RV_vpost_list")
+    comment_form = CommentForm()  # Inicializa el formulario *fuera* del bloque POST
+
+    if request.method == "POST":
+        if request.user == post.created_by or request.user.is_superuser:
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.post = post
+                comment.save()
+                return redirect("RV_vpost_detail", post_id=post.id)
+        else:
+            # Opcional: Puedes mostrar un mensaje de error al usuario si no tiene permisos
+            # messages.error(request, "No tienes permiso para comentar en este post.")
+            # pass # Simplemente vuelve a renderizar la página sin procesar el formulario
+            redirect("RV_vpost_list")
+
     return render(
         request, "blog/post_detail.html", {"post": post, "comment_form": comment_form}
     )
-
 
 ###
 def category_list(request):
